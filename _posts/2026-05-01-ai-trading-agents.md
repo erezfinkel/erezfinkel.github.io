@@ -1,8 +1,9 @@
-<img src="/assets/images/ai-agents.png" alt="AI Agents" style="width:100%; border-radius: 10px; margin: 20px 0;">
 ---
 layout: default
 title: "כשסוכני AI סוחרים בשמך: מי באמת מרוויח?"
 ---
+
+<img src="/assets/images/ai-agents.png" alt="AI Agents" style="width:100%; border-radius: 10px; margin: 20px 0;">
 
 # כשסוכני AI סוחרים אחד עם השני: האם המודל שלך פראייר?
 
