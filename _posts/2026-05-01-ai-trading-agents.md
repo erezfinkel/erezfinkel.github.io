@@ -1,3 +1,4 @@
+![תיאור התמונה למקרה שלא נטענת](/assets/images/ai-agents.png)
 ---
 layout: default
 title: "כשסוכני AI סוחרים בשמך: מי באמת מרוויח?"
