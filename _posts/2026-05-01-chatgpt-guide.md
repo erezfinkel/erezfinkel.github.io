@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "המדריך המלא ל-ChatGPT: כל מה שצריך לדעת ב-2026"
 date: 2026-05-01
 ---
