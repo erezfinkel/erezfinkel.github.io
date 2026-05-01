@@ -1,4 +1,3 @@
-![תיאור התמונה למקרה שלא נטענת](/assets/images/ai-agents.png)
 <img src="/assets/images/ai-agents.png" alt="AI Agents" style="width:100%; border-radius: 10px; margin: 20px 0;">
 ---
 layout: default
