@@ -5,29 +5,6 @@ date: 2026-05-01
 image: https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80
 ---
 
-<style>
-  body { direction: rtl; text-align: right; }
-  .post-content { font-family: 'Heebo', sans-serif; line-height: 1.8; }
-  blockquote {
-    border-right: 4px solid #22d3a0;
-    border-left: none;
-    padding: 10px 16px;
-    margin: 16px 0;
-    background: rgba(34,211,160,0.05);
-    color: #aaa;
-    border-radius: 0 8px 8px 0;
-  }
-  .warning-box {
-    background: rgba(255,180,0,0.06);
-    border: 1px solid rgba(255,180,0,0.2);
-    border-radius: 10px;
-    padding: 18px 20px;
-    margin: 20px 0;
-  }
-</style>
-
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;800&display=swap" rel="stylesheet">
-
 <img src="/assets/images/GPT_IMAGE.png" alt="המדריך המלא ל-ChatGPT 2026" style="width:100%; border-radius: 12px; margin: 24px 0; border: 1px solid #333;">
 
 # המדריך המלא ל-ChatGPT: איך להוציא ממנו את המקסימום

@@ -1,0 +1,91 @@
+<!-- Global RTL + Hebrew Typography for all pages -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ── Global RTL ── */
+  html, body {
+    direction: rtl !important;
+    text-align: right !important;
+  }
+
+  /* ── Hebrew font for all text ── */
+  body, p, li, td, th, blockquote, figcaption {
+    font-family: 'Heebo', Arial, sans-serif !important;
+    line-height: 1.8 !important;
+  }
+
+  /* ── Headings ── */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Heebo', Arial, sans-serif !important;
+    font-weight: 800 !important;
+    direction: rtl !important;
+    text-align: right !important;
+  }
+
+  /* ── Theme header ── */
+  header {
+    direction: rtl !important;
+    text-align: right !important;
+  }
+
+  header h1 { text-align: right !important; }
+
+  /* ── Main content area ── */
+  #main_content,
+  section#main_content,
+  .inner {
+    direction: rtl !important;
+    text-align: right !important;
+  }
+
+  /* ── Lists ── */
+  ul, ol {
+    padding-right: 1.4em !important;
+    padding-left: 0 !important;
+  }
+
+  /* ── Blockquotes ── */
+  blockquote {
+    border-right: 4px solid #22d3a0 !important;
+    border-left: none !important;
+    padding-right: 16px !important;
+    padding-left: 0 !important;
+    margin-right: 0 !important;
+    direction: rtl !important;
+    text-align: right !important;
+  }
+
+  /* ── Code blocks — keep LTR ── */
+  pre, code {
+    direction: ltr !important;
+    text-align: left !important;
+    font-family: 'JetBrains Mono', monospace !important;
+  }
+
+  /* ── "View on GitHub" button ── */
+  #header_wrap .inner {
+    text-align: right !important;
+  }
+
+  /* ── Nav / anchor links ── */
+  a { direction: rtl; }
+
+  /* ── Horizontal rules ── */
+  hr { margin: 24px 0; }
+
+  /* ── Images ── */
+  img { max-width: 100%; height: auto; }
+
+  /* ── Warning box (used in chatgpt-guide) ── */
+  .warning-box {
+    background: rgba(255,180,0,0.06);
+    border: 1px solid rgba(255,180,0,0.2);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 20px 0;
+    direction: rtl;
+    text-align: right;
+  }
+</style>
