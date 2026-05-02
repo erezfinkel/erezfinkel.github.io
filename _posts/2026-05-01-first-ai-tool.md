@@ -1,6 +1,8 @@
 ---
 layout: default
 title: "הכלי הראשון שאתם חייבים להכיר"
+date: 2026-05-01
+image: https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&q=80
 ---
 
 # הפוסט הראשון שלי!
