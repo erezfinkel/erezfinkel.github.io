@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>בלוג ה-AI של ארז</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: oklch(97% 0.008 75);
+    --bg-alt: oklch(94% 0.01 75);
+    --bg-card: oklch(99% 0.004 75);
+    --surface: oklch(100% 0 0);
+    --ink: oklch(14% 0.012 60);
+    --ink-2: oklch(35% 0.01 60);
+    --ink-3: oklch(55% 0.008 60);
+    --ink-4: oklch(72% 0.006 60);
+    --border: oklch(87% 0.008 75);
+    --border-strong: oklch(75% 0.01 75);
+    --accent: oklch(44% 0.18 25);
+    --accent-hover: oklch(38% 0.20 25);
+    --accent-light: oklch(94% 0.04 25);
+    --rule: oklch(78% 0.01 60);
+    --font-serif: 'Frank Ruhl Libre', 'Playfair Display', Georgia, serif;
+    --font-ui: 'Assistant', 'Helvetica Neue', Arial, sans-serif;
+    --nav-h: 64px;
+    --max-w: 1280px;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  [data-theme="dark"] {
+    --bg: oklch(12% 0.010 240);
+    --bg-alt: oklch(16% 0.012 240);
+    --bg-card: oklch(18% 0.012 240);
+    --surface: oklch(20% 0.014 240);
+    --ink: oklch(95% 0.005 80);
+    --ink-2: oklch(82% 0.006 80);
+    --ink-3: oklch(65% 0.005 80);
+    --ink-4: oklch(48% 0.005 80);
+    --border: oklch(26% 0.010 240);
+    --border-strong: oklch(34% 0.012 240);
+    --accent: oklch(62% 0.18 25);
+    --accent-hover: oklch(68% 0.20 25);
+    --accent-light: oklch(22% 0.06 25);
+    --rule: oklch(30% 0.010 240);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-ui);
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { display: block; width: 100%; object-fit: cover; }
+  a { color: inherit; text-decoration: none; }
+  button { cursor: pointer; font-family: var(--font-ui); }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+
+  /* ─── TOP BAR ─── */
+  .top-bar {
+    background: var(--ink);
+    color: var(--bg);
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 6px 0;
+    text-align: center;
+  }
+  .top-bar span { opacity: 0.7; margin: 0 8px; }
+  .top-bar a { color: var(--accent); }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--surface);
+    border-bottom: 1.5px solid var(--border);
+    height: var(--nav-h);
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
+  }
+  nav.scrolled { box-shadow: 0 2px 20px oklch(0% 0 0 / 0.08); }
+  .nav-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .nav-logo {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .nav-logo em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .nav-divider {
+    width: 1px;
+    height: 24px;
+    background: var(--border-strong);
+    margin: 0 20px;
+    flex-shrink: 0;
+  }
+  .nav-links {
+    display: flex;
+    gap: 0;
+    list-style: none;
+    flex: 1;
+  }
+  .nav-links li a {
+    display: block;
+    padding: 0 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-2);
+    line-height: var(--nav-h);
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+  .nav-links li a:hover, .nav-links li a.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: auto;
+    margin-left: 0;
+  }
+  [dir="rtl"] .nav-actions { margin-right: auto; margin-left: 0; }
+
+  .search-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 13px;
+    color: var(--ink-3);
+    transition: border-color 0.2s, background 0.2s;
+    min-width: 180px;
+  }
+  .search-box:focus-within {
+    border-color: var(--accent);
+    background: var(--surface);
+  }
+  .search-box input {
+    background: none;
+    border: none;
+    outline: none;
+    font-family: var(--font-ui);
+    font-size: 13px;
+    color: var(--ink);
+    flex: 1;
+    min-width: 0;
+  }
+  .search-box input::placeholder { color: var(--ink-4); }
+  .search-icon { color: var(--ink-4); font-size: 14px; flex-shrink: 0; }
+
+  .theme-toggle {
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-2);
+    font-size: 16px;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    flex-shrink: 0;
+  }
+  .theme-toggle:hover {
+    background: var(--accent-light);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ─── DATE BAR ─── */
+  .date-bar {
+    border-bottom: 1.5px solid var(--border);
+    padding: 8px 0;
+  }
+  .date-bar-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12.5px;
+    color: var(--ink-3);
+    font-family: var(--font-ui);
+  }
+  .date-bar-left { font-weight: 600; }
+  .date-bar-cats { display: flex; gap: 16px; }
+  .date-bar-cats a {
+    color: var(--ink-3);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .date-bar-cats a:hover { color: var(--accent); }
+
+  /* ─── HERO ─── */
+  .hero-section {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 32px 24px 0;
+    border-bottom: 1.5px solid var(--border);
+    padding-bottom: 32px;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    grid-template-rows: auto auto;
+    gap: 0 32px;
+  }
+  .hero-main { grid-column: 1; grid-row: 1 / 3; }
+  .hero-main a { display: block; }
+  .hero-main-img {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    margin-bottom: 18px;
+  }
+  .hero-main-img img {
+    height: 100%;
+    transition: transform 0.5s ease;
+  }
+  .hero-main:hover .hero-main-img img { transform: scale(1.03); }
+  .hero-tag {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    margin-bottom: 12px;
+  }
+  .hero-main-title {
+    font-family: var(--font-serif);
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 12px;
+    text-wrap: pretty;
+  }
+  .hero-main:hover .hero-main-title { color: var(--accent); }
+  .hero-main-excerpt {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-2);
+    margin-bottom: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--ink-3);
+    font-weight: 600;
+  }
+  .hero-meta-dot { color: var(--rule); }
+
+  /* Hero side stack */
+  .hero-side { display: flex; flex-direction: column; gap: 0; }
+  .hero-side-item {
+    display: flex;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-side-item:first-child { padding-top: 0; }
+  .hero-side-item:last-child { border-bottom: none; }
+  .hero-side-img {
+    width: 88px;
+    height: 66px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .hero-side-img img { height: 100%; transition: transform 0.3s; }
+  .hero-side-item:hover .hero-side-img img { transform: scale(1.05); }
+  .hero-side-content { flex: 1; min-width: 0; }
+  .hero-side-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 5px;
+  }
+  .hero-side-title {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--ink);
+    margin-bottom: 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .hero-side-item:hover .hero-side-title { color: var(--accent); }
+  .hero-side-meta { font-size: 12px; color: var(--ink-4); }
+
+  /* ─── SECTION HEADER ─── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .section-header-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .section-header-title {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-header-title::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 22px;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+  .section-header-more {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: opacity 0.2s;
+  }
+  .section-header-more:hover { opacity: 0.75; }
+
+  /* ─── MAIN LAYOUT ─── */
+  .main-content {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 40px 24px;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 48px;
+    align-items: start;
+  }
+
+  /* ─── CARD GRID ─── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+    cursor: pointer;
+  }
+  .card:hover {
+    box-shadow: 0 6px 28px oklch(0% 0 0 / 0.10);
+    transform: translateY(-3px);
+    border-color: var(--border-strong);
+  }
+  .card-img { aspect-ratio: 16/10; overflow: hidden; }
+  .card-img img { height: 100%; transition: transform 0.5s ease; }
+  .card:hover .card-img img { transform: scale(1.06); }
+  .card-body { padding: 16px 18px 20px; flex: 1; display: flex; flex-direction: column; }
+  .card-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .card-title {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 10px;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-wrap: pretty;
+  }
+  .card:hover .card-title { color: var(--accent); }
+  .card-excerpt {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--ink-3);
+    margin-bottom: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--ink-4);
+    font-weight: 600;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    margin-top: auto;
+  }
+  .card-meta-dot { color: var(--rule); }
+
+  /* ─── LIST CARDS (for article page sidebar or additional) ─── */
+  .list-card {
+    display: flex;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .list-card:last-child { border-bottom: none; }
+  .list-card:hover { opacity: 0.8; }
+  .list-card-img {
+    width: 80px;
+    height: 60px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .list-card-img img { height: 100%; }
+  .list-card-title {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--ink);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 6px;
+  }
+  .list-card:hover .list-card-title { color: var(--accent); }
+  .list-card-meta { font-size: 12px; color: var(--ink-4); }
+
+  /* ─── SIDEBAR ─── */
+  .sidebar { display: flex; flex-direction: column; gap: 32px; }
+  .sidebar-widget {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 20px;
+  }
+  .sidebar-widget-title {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .newsletter-form { display: flex; flex-direction: column; gap: 10px; }
+  .newsletter-desc { font-size: 13.5px; line-height: 1.6; color: var(--ink-2); margin-bottom: 4px; }
+  .newsletter-input {
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    padding: 10px 14px;
+    font-family: var(--font-ui);
+    font-size: 14px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+    text-align: right;
+    direction: rtl;
+  }
+  .newsletter-input:focus { border-color: var(--accent); }
+  .newsletter-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 11px 18px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: var(--font-ui);
+    cursor: pointer;
+    transition: background 0.2s;
+    border-radius: 2px;
+  }
+  .newsletter-btn:hover { background: var(--accent-hover); }
+
+  .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag-pill {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--ink-2);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .tag-pill:hover {
+    background: var(--accent-light);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ─── ARTICLE PAGE ─── */
+  .article-page { display: none; }
+  .article-page.active { display: block; }
+  .article-header {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 40px 24px 0;
+    max-width: 860px;
+  }
+  .article-breadcrumb {
+    font-size: 13px;
+    color: var(--ink-3);
+    margin-bottom: 20px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .article-breadcrumb a { color: var(--accent); font-weight: 600; }
+  .article-cat {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    margin-bottom: 18px;
+  }
+  .article-title {
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 900;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 18px;
+    text-wrap: pretty;
+    max-width: 780px;
+  }
+  .article-subtitle {
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    margin-bottom: 20px;
+    max-width: 700px;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-style: italic;
+  }
+  .article-meta-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+    font-size: 14px;
+    color: var(--ink-3);
+  }
+  .article-author { font-weight: 700; color: var(--ink); }
+  .article-meta-dot { color: var(--rule); }
+  .article-hero-img {
+    max-width: 860px;
+    margin: 0 auto 40px;
+    padding: 0 24px;
+  }
+  .article-hero-img img { width: 100%; aspect-ratio: 16/8; object-fit: cover; }
+  .article-img-caption {
+    font-size: 12px;
+    color: var(--ink-4);
+    margin-top: 8px;
+    font-style: italic;
+    text-align: center;
+  }
+  .article-body {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 40px;
+    align-items: start;
+  }
+  .article-text { font-size: 17px; line-height: 1.8; color: var(--ink-2); }
+  .article-text p { margin-bottom: 22px; }
+  .article-text h2 {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 32px 0 14px;
+    border-right: 4px solid var(--accent);
+    padding-right: 14px;
+  }
+  .article-text blockquote {
+    border-right: 4px solid var(--accent);
+    padding: 16px 20px;
+    margin: 28px 0;
+    background: var(--accent-light);
+    font-family: var(--font-serif);
+    font-size: 19px;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  .article-reading-bar {
+    position: fixed;
+    top: var(--nav-h);
+    right: 0;
+    left: 0;
+    height: 3px;
+    background: var(--border);
+    z-index: 99;
+  }
+  .article-reading-progress {
+    height: 100%;
+    background: var(--accent);
+    width: 0%;
+    transition: width 0.1s;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 48px 24px 24px;
+    margin-top: 64px;
+  }
+  .footer-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid oklch(30% 0.008 60);
+    margin-bottom: 24px;
+  }
+  .footer-brand-name {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .footer-brand-name em { font-style: normal; color: var(--accent); }
+  .footer-desc { font-size: 14px; line-height: 1.7; opacity: 0.65; }
+  .footer-col-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 14px;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .footer-links a { font-size: 14px; opacity: 0.75; transition: opacity 0.2s; }
+  .footer-links a:hover { opacity: 1; }
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    opacity: 0.5;
+  }
+
+  /* ─── PAGE TRANSITIONS ─── */
+  .page { display: none; }
+  .page.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ─── ABOUT PAGE ─── */
+  .about-hero {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 64px 24px;
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 64px;
+    align-items: center;
+  }
+  .about-eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .about-title {
+    font-family: var(--font-serif);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 900;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .about-body { font-size: 17px; line-height: 1.8; color: var(--ink-2); }
+  .about-body p { margin-bottom: 18px; }
+  .about-img-box {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: var(--bg-alt);
+  }
+  .about-img-placeholder {
+    width: 100%; height: 100%;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--border) 0px,
+      var(--border) 1px,
+      transparent 1px,
+      transparent 10px
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: monospace;
+    font-size: 12px;
+    color: var(--ink-4);
+    text-align: center;
+    padding: 20px;
+  }
+  .stats-row {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 24px 64px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .stat-cell {
+    background: var(--bg-card);
+    padding: 32px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: var(--font-serif);
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-label { font-size: 14px; color: var(--ink-3); font-weight: 600; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-side { flex-direction: row; overflow-x: auto; gap: 16px; }
+    .hero-side-item { flex-direction: column; min-width: 200px; border-bottom: none; padding: 0; }
+    .hero-side-img { width: 100%; height: 130px; }
+    .main-content { grid-template-columns: 1fr; }
+    .card-grid { grid-template-columns: repeat(2, 1fr); }
+    .article-body { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .about-hero { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 580px) {
+    .card-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .footer-top { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div id="app"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accentColor": "oklch(44% 0.18 25)",
+  "fontBody": "Frank Ruhl Libre",
+  "darkMode": false,
+  "compactNav": false,
+  "showTopBar": true
+}/*EDITMODE-END*/;
+
+// ─── DATA ───────────────────────────────────────────────────────────────────
+const ARTICLES = [
+  {
+    id: 1,
+    title: "הפנטגון חתם על הסכמי AI עם 7 ענקיות טק — ולמה Anthropic לא ברשימה",
+    excerpt: "ב-1 במאי 2026 הכריז משרד ההגנה האמריקאי על הסכמים עם שבע חברות טכנולוגיה לפריסת AI ברשתות מסווגות: OpenAI, Google, Microsoft ועוד — אבל Anthropic נעדרת.",
+    date: "01/05/2026",
+    category: "חדשות",
+    catEn: "NEWS",
+    img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80",
+    readTime: "5 דק׳",
+    featured: true,
+  },
+  {
+    id: 2,
+    title: "המדריך המלא ל-ChatGPT: כל מה שצריך לדעת ב-2026",
+    excerpt: "ChatGPT השתנה מהקצה לקצה בשנה האחרונה. מדריך מקיף שמכסה יכולות חדשות, שימושים מתקדמים ואסטרטגיות לשימוש נכון.",
+    date: "01/05/2026",
+    category: "מדריכים",
+    catEn: "GUIDES",
+    img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80",
+    readTime: "12 דק׳",
+  },
+  {
+    id: 3,
+    title: "כשסוכני AI סוחרים בשמך: מי באמת מרוויח?",
+    excerpt: "ניסוי שביצעה Anthropic גילה תוצאות מפתיעות כשסוכני AI נשלחו לנהל מסחר אוטומטי בזמן אמת.",
+    date: "01/05/2026",
+    category: "ניתוח",
+    catEn: "ANALYSIS",
+    img: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80",
+    readTime: "7 דק׳",
+  },
+  {
+    id: 4,
+    title: "Mythos של Anthropic: המודל הסודי שנועד לשנות את עולם הסייבר",
+    excerpt: "Claude Mythos Preview מסוגל לאתר אלפי חולשות אבטחה בקוד, כולל כאלה שנותרו בלתי מזוהות במשך עשרות שנים.",
+    date: "28/04/2026",
+    category: "חדשות",
+    catEn: "NEWS",
+    img: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&q=80",
+    readTime: "6 דק׳",
+  },
+  {
+    id: 5,
+    title: "Google Cloud Next 2026: עידן הסוכנים הגיע — וזה כבר לא עתיד",
+    excerpt: "גוגל מציגה גרסה חדשה לחלוטין של Gemini, ומכריזה שהעידן האייג'נטי הוא כאן — לא בשנים הקרובות, אלא עכשיו.",
+    date: "26/04/2026",
+    category: "ניתוח",
+    catEn: "ANALYSIS",
+    img: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80",
+    readTime: "8 דק׳",
+  },
+  {
+    id: 6,
+    title: "גוגל תשקיע 40 מיליארד דולר ב-Anthropic",
+    excerpt: "המהלך הגדול ביותר בהיסטוריה של תעשיית ה-AI הישראלית: גוגל מכפילה את הימור שלה על Anthropic.",
+    date: "24/04/2026",
+    category: "כסף וטק",
+    catEn: "FINANCE",
+    img: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80",
+    readTime: "4 דק׳",
+  },
+  {
+    id: 7,
+    title: "GPT-5.5 הגיע: כל מה שצריך לדעת על המודל הכי חכם של OpenAI",
+    excerpt: "OpenAI מצייר עתיד שבו המודל לא רק עונה לשאלות — אלא מנהל משימות מורכבות מהתחלה ועד הסוף.",
+    date: "23/04/2026",
+    category: "מדריכים",
+    catEn: "GUIDES",
+    img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80",
+    readTime: "9 דק׳",
+  },
+];
+
+const TAGS = ["ChatGPT", "Claude", "Gemini", "OpenAI", "Anthropic", "AI Agents", "סייבר", "מדריכים", "מחקר", "ישראל"];
+
+// ─── ICONS ──────────────────────────────────────────────────────────────────
+const SunIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+    <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+  </svg>
+);
+const MoonIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+);
+const SearchIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+  </svg>
+);
+
+// ─── COMPONENTS ─────────────────────────────────────────────────────────────
+
+function NavBar({ dark, toggleDark, onNav, page, searchQuery, setSearchQuery }) {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  return (
+    <nav className={scrolled ? 'scrolled' : ''}>
+      <div className="nav-inner">
+        <a className="nav-logo" href="#" onClick={e => { e.preventDefault(); onNav('home'); }}>
+          בלוג ה-<em>AI</em> של ארז
+        </a>
+        <div className="nav-divider"></div>
+        <ul className="nav-links">
+          {[['home','ראשי'],['news','חדשות'],['guides','מדריכים'],['tools','כלים'],['about','אודות']].map(([id,label]) => (
+            <li key={id}>
+              <a href="#" className={page === id ? 'active' : ''} onClick={e => { e.preventDefault(); onNav(id); }}>
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div className="nav-actions">
+          <div className="search-box">
+            <span className="search-icon"><SearchIcon /></span>
+            <input
+              type="text"
+              placeholder="חיפוש כתבות..."
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              dir="rtl"
+            />
+          </div>
+          <button className="theme-toggle" onClick={toggleDark} title={dark ? 'מצב בהיר' : 'מצב כהה'}>
+            {dark ? <SunIcon /> : <MoonIcon />}
+          </button>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+function DateBar() {
+  return (
+    <div className="date-bar">
+      <div className="date-bar-inner">
+        <span className="date-bar-left">שישי, 2 במאי 2026</span>
+        <div className="date-bar-cats">
+          <a href="#">חדשות</a>
+          <a href="#">מדריכים</a>
+          <a href="#">כלים</a>
+          <a href="#">ניתוח</a>
+          <a href="#">ראיונות</a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SectionHeader({ title, more }) {
+  return (
+    <div className="section-header">
+      <div className="section-header-title">{title}</div>
+      <div className="section-header-line"></div>
+      {more && <a href="#" className="section-header-more">{more} ←</a>}
+    </div>
+  );
+}
+
+function HeroSection({ articles, onArticle }) {
+  const main = articles[0];
+  const side = articles.slice(1, 5);
+  return (
+    <section className="hero-section">
+      <div className="hero-grid">
+        <div className="hero-main">
+          <a href="#" onClick={e => { e.preventDefault(); onArticle(main); }}>
+            <div className="hero-main-img">
+              <img src={main.img} alt={main.title} />
+            </div>
+            <div className="hero-tag">{main.catEn}</div>
+            <h1 className="hero-main-title">{main.title}</h1>
+            <p className="hero-main-excerpt">{main.excerpt}</p>
+            <div className="hero-meta">
+              <span>ארז פינקל</span>
+              <span className="hero-meta-dot">·</span>
+              <span>{main.date}</span>
+              <span className="hero-meta-dot">·</span>
+              <span>{main.readTime} קריאה</span>
+            </div>
+          </a>
+        </div>
+        <div className="hero-side">
+          {side.map(a => (
+            <div className="hero-side-item" key={a.id} onClick={() => onArticle(a)} style={{cursor:'pointer'}}>
+              <div className="hero-side-img">
+                <img src={a.img} alt={a.title} />
+              </div>
+              <div className="hero-side-content">
+                <div className="hero-side-tag">{a.catEn}</div>
+                <div className="hero-side-title">{a.title}</div>
+                <div className="hero-side-meta">{a.date} · {a.readTime}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ArticleCard({ article, onArticle }) {
+  return (
+    <div className="card" onClick={() => onArticle(article)}>
+      <div className="card-img">
+        <img src={article.img} alt={article.title} />
+      </div>
+      <div className="card-body">
+        <div className="card-tag">{article.catEn}</div>
+        <h3 className="card-title">{article.title}</h3>
+        <p className="card-excerpt">{article.excerpt}</p>
+        <div className="card-meta">
+          <span>ארז פינקל</span>
+          <span className="card-meta-dot">·</span>
+          <span>{article.date}</span>
+          <span className="card-meta-dot">·</span>
+          <span>{article.readTime}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Sidebar() {
+  return (
+    <aside className="sidebar">
+      <div className="sidebar-widget">
+        <div className="sidebar-widget-title">ניוזלטר שבועי</div>
+        <div className="newsletter-form">
+          <p className="newsletter-desc">קבלו את הכתבות הטובות ביותר של השבוע, ישירות למייל שלכם.</p>
+          <input className="newsletter-input" type="email" placeholder="כתובת המייל שלכם" />
+          <button className="newsletter-btn">הרשמה חינם</button>
+        </div>
+      </div>
+      <div className="sidebar-widget">
+        <div className="sidebar-widget-title">כתבות נוספות</div>
+        {ARTICLES.slice(4).map(a => (
+          <div className="list-card" key={a.id}>
+            <div className="list-card-img">
+              <img src={a.img} alt={a.title} />
+            </div>
+            <div>
+              <div className="list-card-title">{a.title}</div>
+              <div className="list-card-meta">{a.date}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="sidebar-widget">
+        <div className="sidebar-widget-title">נושאים</div>
+        <div className="tag-cloud">
+          {TAGS.map(t => <span className="tag-pill" key={t}>{t}</span>)}
+        </div>
+      </div>
+    </aside>
+  );
+}
+
+function HomePage({ onArticle, searchQuery }) {
+  const filtered = searchQuery
+    ? ARTICLES.filter(a => a.title.includes(searchQuery) || a.excerpt.includes(searchQuery) || a.catEn.toLowerCase().includes(searchQuery.toLowerCase()))
+    : ARTICLES;
+
+  return (
+    <div className="page active">
+      <DateBar />
+      {!searchQuery && <HeroSection articles={ARTICLES} onArticle={onArticle} />}
+      <div className="main-content">
+        <main>
+          {searchQuery
+            ? <>
+                <SectionHeader title={`תוצאות עבור: "${searchQuery}"`} />
+                <div className="card-grid">
+                  {filtered.map(a => <ArticleCard key={a.id} article={a} onArticle={onArticle} />)}
+                </div>
+                {filtered.length === 0 && <p style={{color:'var(--ink-3)',textAlign:'center',padding:'40px 0'}}>לא נמצאו כתבות תואמות.</p>}
+              </>
+            : <>
+                <SectionHeader title="כתבות אחרונות" more="כל הכתבות" />
+                <div className="card-grid">
+                  {ARTICLES.slice(1).map(a => <ArticleCard key={a.id} article={a} onArticle={onArticle} />)}
+                </div>
+              </>
+          }
+        </main>
+        <Sidebar />
+      </div>
+    </div>
+  );
+}
+
+function ArticleReadingBar() {
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    const onScroll = () => {
+      const el = document.documentElement;
+      const total = el.scrollHeight - el.clientHeight;
+      setProgress(total > 0 ? (window.scrollY / total) * 100 : 0);
+    };
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  return (
+    <div className="article-reading-bar">
+      <div className="article-reading-progress" style={{ width: `${progress}%` }}></div>
+    </div>
+  );
+}
+
+function ArticlePage({ article, onBack }) {
+  useEffect(() => { window.scrollTo(0, 0); }, [article]);
+  const body = `
+    <p>${article.excerpt}</p>
+    <p>מאז שהבינה המלאכותית נכנסה לחיינו בצורה כה מאסיבית, הדיון על השפעותיה הפך לאחד הדיונים המרכזיים בזירה הטכנולוגית הגלובלית. אנחנו עדים לשינוי עמוק לא רק בכלים שבהם אנחנו משתמשים, אלא בדרך שבה אנחנו חושבים, עובדים ומקבלים החלטות.</p>
+    <h2>הרקע לאירוע</h2>
+    <p>הפיתוחים האחרונים בתחום מצביעים על מגמה ברורה: יותר ויותר חברות משלבות יכולות AI ישירות בתשתיות קריטיות, מה שמעלה שאלות רגולטוריות מורכבות שהממשלות עדיין מנסות להשיב עליהן.</p>
+    <blockquote>"AI הוא לא עוד כלי — הוא שינוי פרדיגמה שמאתגר את כל מה שידענו על אוטומציה ואינטליגנציה."</blockquote>
+    <p>המחקרים האחרונים מראים כי הטמעה נכונה של AI יכולה להגדיל פריון ב-40% ויותר, אך המפתח נמצא בגישה האסטרטגית ובהכשרת האנשים.</p>
+    <h2>מה זה אומר בפרקטיקה</h2>
+    <p>ארגונים שמצליחים להטמיע AI בצורה אפקטיבית משתפים מספר מאפיינים משותפים: מנהיגות שמאמינה בטכנולוגיה, תרבות של ניסוי ולמידה, ותשומת לב מיוחדת לאיכות הנתונים.</p>
+  `;
+
+  return (
+    <div className="page active">
+      <ArticleReadingBar />
+      <div className="article-header" style={{maxWidth:'860px',margin:'0 auto',padding:'40px 24px 0'}}>
+        <div className="article-breadcrumb">
+          <a href="#" onClick={e => { e.preventDefault(); onBack(); }}>← חזרה</a>
+          <span>/</span>
+          <span>{article.category}</span>
+        </div>
+        <div className="article-cat">{article.catEn}</div>
+        <h1 className="article-title">{article.title}</h1>
+        <p className="article-subtitle">{article.excerpt}</p>
+        <div className="article-meta-bar">
+          <span className="article-author">ארז פינקל</span>
+          <span className="article-meta-dot">·</span>
+          <span>{article.date}</span>
+          <span className="article-meta-dot">·</span>
+          <span>{article.readTime} קריאה</span>
+        </div>
+      </div>
+      <div className="article-hero-img">
+        <img src={article.img} alt={article.title} />
+        <div className="article-img-caption">תמונה: Unsplash</div>
+      </div>
+      <div className="article-body">
+        <div className="article-text" dangerouslySetInnerHTML={{ __html: body }} />
+        <aside className="sidebar" style={{position:'sticky',top:'calc(var(--nav-h) + 20px)'}}>
+          <div className="sidebar-widget">
+            <div className="sidebar-widget-title">ניוזלטר</div>
+            <div className="newsletter-form">
+              <p className="newsletter-desc">קבלו עדכונים שבועיים על AI ישירות למייל.</p>
+              <input className="newsletter-input" type="email" placeholder="המייל שלכם" />
+              <button className="newsletter-btn">הרשמה</button>
+            </div>
+          </div>
+          <div className="sidebar-widget">
+            <div className="sidebar-widget-title">קראו גם</div>
+            {ARTICLES.filter(a => a.id !== article.id).slice(0,3).map(a => (
+              <div className="list-card" key={a.id}>
+                <div className="list-card-img"><img src={a.img} alt={a.title} /></div>
+                <div>
+                  <div className="list-card-title">{a.title}</div>
+                  <div className="list-card-meta">{a.date}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </aside>
+      </div>
+    </div>
+  );
+}
+
+function NewsPage({ onArticle }) {
+  return (
+    <div className="page active">
+      <div className="main-content" style={{gridTemplateColumns:'1fr',paddingTop:'32px'}}>
+        <main>
+          <SectionHeader title="כל כתבות החדשות" />
+          <div className="card-grid">
+            {ARTICLES.filter(a=>a.category==='חדשות'||a.category==='ניתוח').map(a => (
+              <ArticleCard key={a.id} article={a} onArticle={onArticle} />
+            ))}
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+}
+
+function GuidesPage({ onArticle }) {
+  return (
+    <div className="page active">
+      <div className="main-content" style={{gridTemplateColumns:'1fr',paddingTop:'32px'}}>
+        <main>
+          <SectionHeader title="מדריכים ומדריכי AI" />
+          <div className="card-grid">
+            {ARTICLES.filter(a=>a.category==='מדריכים').map(a => (
+              <ArticleCard key={a.id} article={a} onArticle={onArticle} />
+            ))}
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+}
+
+function ToolsPage() {
+  const tools = [
+    { name: 'ChatGPT', desc: 'מודל שפה של OpenAI, מוביל השוק', tag: 'FREE+PRO', img: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=300&q=70' },
+    { name: 'Claude', desc: 'מודל הדגל של Anthropic לחשיבה מתקדמת', tag: 'FREE+PRO', img: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=300&q=70' },
+    { name: 'Gemini', desc: 'מודל האמולטיממודל החדש של Google', tag: 'FREE+PRO', img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=300&q=70' },
+    { name: 'Cursor', desc: 'עורך קוד עם AI מובנה — vibe coding', tag: 'FREE+PRO', img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=300&q=70' },
+    { name: 'Midjourney', desc: 'מחולל תמונות AI מהמובילים בעולם', tag: 'PRO', img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=300&q=70' },
+    { name: 'Perplexity', desc: 'מנוע חיפוש AI שמציין מקורות', tag: 'FREE+PRO', img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=300&q=70' },
+  ];
+  return (
+    <div className="page active">
+      <div className="main-content" style={{gridTemplateColumns:'1fr',paddingTop:'32px'}}>
+        <main>
+          <SectionHeader title="כלי AI מובילים" />
+          <div className="card-grid">
+            {tools.map(t => (
+              <div className="card" key={t.name}>
+                <div className="card-img"><img src={t.img} alt={t.name} /></div>
+                <div className="card-body">
+                  <div className="card-tag">{t.tag}</div>
+                  <h3 className="card-title" style={{fontSize:'20px'}}>{t.name}</h3>
+                  <p className="card-excerpt">{t.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+}
+
+function AboutPage() {
+  return (
+    <div className="page active">
+      <div className="about-hero">
+        <div>
+          <div className="about-eyebrow">אודות הבלוג</div>
+          <h1 className="about-title">בינה מלאכותית — בעברית, לעומק</h1>
+          <div className="about-body">
+            <p>בלוג ה-AI של ארז הוא מגזין עצמאי שמסקר את עולם הבינה המלאכותית בעברית. אנחנו מאמינים שתוכן איכותי, מעמיק ונגיש בשפת האם חשוב יותר מאי פעם.</p>
+            <p>הבלוג מתמקד בחדשות שמשנות את השוק, מדריכים מעשיים לשימוש בכלי AI, וניתוחים מעמיקים של המגמות הגדולות בתעשייה.</p>
+            <p>כותב הבלוג, ארז פינקל, הוא חוקר ופרשן טכנולוגי עם ניסיון של שנים בתחום.</p>
+          </div>
+        </div>
+        <div className="about-img-box">
+          <div className="about-img-placeholder">
+            <span>[ תמונה של<br/>ארז פינקל ]</span>
+          </div>
+        </div>
+      </div>
+      <div className="stats-row">
+        <div className="stat-cell">
+          <div className="stat-num">120+</div>
+          <div className="stat-label">כתבות פורסמו</div>
+        </div>
+        <div className="stat-cell">
+          <div className="stat-num">15K</div>
+          <div className="stat-label">קוראים חודשיים</div>
+        </div>
+        <div className="stat-cell">
+          <div className="stat-num">3K+</div>
+          <div className="stat-label">מנויי ניוזלטר</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SiteFooter({ onNav }) {
+  return (
+    <footer>
+      <div className="footer-inner">
+        <div className="footer-top">
+          <div>
+            <div className="footer-brand-name">בלוג ה-<em>AI</em> של ארז</div>
+            <p className="footer-desc">מגזין עצמאי שמסקר את עולם הבינה המלאכותית בעברית — חדשות, מדריכים וניתוחים.</p>
+          </div>
+          <div>
+            <div className="footer-col-title">ניווט</div>
+            <ul className="footer-links">
+              {[['home','ראשי'],['news','חדשות'],['guides','מדריכים'],['tools','כלים'],['about','אודות']].map(([id,lbl]) => (
+                <li key={id}><a href="#" onClick={e=>{e.preventDefault();onNav(id);}}>{lbl}</a></li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <div className="footer-col-title">נושאים</div>
+            <ul className="footer-links">
+              {['ChatGPT','Claude','Gemini','AI Agents','Vibe Coding'].map(t => (
+                <li key={t}><a href="#">{t}</a></li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <div className="footer-col-title">קישורים</div>
+            <ul className="footer-links">
+              {['ניוזלטר','GitHub','צרו קשר','מדיניות פרטיות'].map(t => (
+                <li key={t}><a href="#">{t}</a></li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <span>© 2026 בלוג ה-AI של ארז. כל הזכויות שמורות.</span>
+          <span>נבנה עם ❤️ וקצת בינה מלאכותית</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+// ─── TWEAKS ─────────────────────────────────────────────────────────────────
+function TweaksUI({ tweaks, setTweak }) {
+  return (
+    <TweaksPanel>
+      <TweakSection title="צבעים">
+        <TweakColor label="צבע אקסנט" id="accentColor" value={tweaks.accentColor} onChange={v => setTweak('accentColor', v)} />
+      </TweakSection>
+      <TweakSection title="טיפוגרפיה">
+        <TweakSelect label="פונט גוף" id="fontBody" value={tweaks.fontBody} onChange={v => setTweak('fontBody', v)}
+          options={[
+            {value:'Frank Ruhl Libre', label:'Frank Ruhl Libre'},
+            {value:'Playfair Display', label:'Playfair Display'},
+            {value:'Georgia', label:'Georgia'},
+          ]}
+        />
+      </TweakSection>
+      <TweakSection title="פריסה">
+        <TweakToggle label="מצב כהה" id="darkMode" value={tweaks.darkMode} onChange={v => setTweak('darkMode', v)} />
+        <TweakToggle label="הצג סרגל עליון" id="showTopBar" value={tweaks.showTopBar} onChange={v => setTweak('showTopBar', v)} />
+      </TweakSection>
+    </TweaksPanel>
+  );
+}
+
+// ─── APP ─────────────────────────────────────────────────────────────────────
+function App() {
+  const tweaksResult = useTweaks(TWEAK_DEFAULTS);
+  const tweaks = tweaksResult?.tweaks ?? TWEAK_DEFAULTS;
+  const setTweak = tweaksResult?.setTweak ?? (() => {});
+  const [page, setPage] = useState('home');
+  const [article, setArticle] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const dark = tweaks.darkMode;
+
+  // Apply theme
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  }, [dark]);
+
+  // Apply accent color
+  useEffect(() => {
+    document.documentElement.style.setProperty('--accent', tweaks.accentColor);
+  }, [tweaks.accentColor]);
+
+  // Apply font
+  useEffect(() => {
+    document.documentElement.style.setProperty('--font-serif', `'${tweaks.fontBody}', Georgia, serif`);
+  }, [tweaks.fontBody]);
+
+  const handleNav = (id) => {
+    setPage(id);
+    setArticle(null);
+    setSearchQuery('');
+    window.scrollTo(0,0);
+  };
+
+  const handleArticle = (a) => {
+    setArticle(a);
+    setPage('article');
+    window.scrollTo(0,0);
+  };
+
+  const handleSearch = (q) => {
+    setSearchQuery(q);
+    if (q && page !== 'home') setPage('home');
+  };
+
+  return (
+    <>
+      {tweaks.showTopBar && (
+        <div className="top-bar">
+          <span>חדש:</span> GPT-5.5 הגיע — <a href="#">קראו את הסקירה המלאה</a>
+          <span>|</span>
+          <span>גוגל תשקיע 40B$ ב-Anthropic</span>
+        </div>
+      )}
+      <NavBar
+        dark={dark}
+        toggleDark={() => setTweak('darkMode', !dark)}
+        onNav={handleNav}
+        page={page}
+        searchQuery={searchQuery}
+        setSearchQuery={handleSearch}
+      />
+      {page === 'home' && <HomePage onArticle={handleArticle} searchQuery={searchQuery} />}
+      {page === 'article' && article && <ArticlePage article={article} onBack={() => handleNav('home')} />}
+      {page === 'news' && <NewsPage onArticle={handleArticle} />}
+      {page === 'guides' && <GuidesPage onArticle={handleArticle} />}
+      {page === 'tools' && <ToolsPage />}
+      {page === 'about' && <AboutPage />}
+      <SiteFooter onNav={handleNav} />
+      <TweaksUI tweaks={tweaks} setTweak={setTweak} />
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('app')).render(<App />);
+</script>
+</body>
+</html>
