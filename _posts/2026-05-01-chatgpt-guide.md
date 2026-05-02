@@ -27,7 +27,7 @@ date: 2026-05-01
 
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-<img src="/assets/images/chatgpt-guide.png" alt="המדריך המלא ל-ChatGPT 2026" style="width:100%; border-radius: 12px; margin: 24px 0; border: 1px solid #333;">
+<img src="/assets/images/GPT_IMAGE.png" alt="המדריך המלא ל-ChatGPT 2026" style="width:100%; border-radius: 12px; margin: 24px 0; border: 1px solid #333;">
 
 # המדריך המלא ל-ChatGPT: איך להוציא ממנו את המקסימום
 
