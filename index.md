@@ -192,6 +192,11 @@ body {
   padding-top: 24px;
 }
 a { color: #0070CF; }
+
+/* Hide hacker theme header */
+header.page-header { display: none !important; }
+section#main_content { padding: 0 !important; margin: 0 !important; }
+body { background-color: #f6f6f6 !important; }
 </style>
 
 <div class="lai-wrap">
