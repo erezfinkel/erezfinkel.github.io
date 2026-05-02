@@ -1,6 +1,8 @@
 ---
 layout: default
 title: "כשסוכני AI סוחרים בשמך: מי באמת מרוויח?"
+date: 2026-05-01
+image: https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80
 ---
 
 <img src="/assets/images/ai-agents.png" alt="AI Agents" style="width:100%; border-radius: 10px; margin: 20px 0;">
