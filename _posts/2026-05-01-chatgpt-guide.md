@@ -2,6 +2,7 @@
 layout: default
 title: "המדריך המלא ל-ChatGPT: כל מה שצריך לדעת ב-2026"
 date: 2026-05-01
+image: https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80
 ---
 
 <style>
