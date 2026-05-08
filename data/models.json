@@ -1,0 +1,13 @@
+[
+  {"name":"GPT-4o",           "provider":"OpenAI",    "context":"128K", "inputPer1M":2.50,  "outputPer1M":10.00, "multimodal":true,  "cutoff":"אפר׳ 2024","api":true, "bench":88.7},
+  {"name":"GPT-4o mini",      "provider":"OpenAI",    "context":"128K", "inputPer1M":0.15,  "outputPer1M":0.60,  "multimodal":true,  "cutoff":"אפר׳ 2024","api":true, "bench":82.0},
+  {"name":"o3",               "provider":"OpenAI",    "context":"200K", "inputPer1M":10.00, "outputPer1M":40.00, "multimodal":true,  "cutoff":"יול׳ 2025","api":true, "bench":96.7},
+  {"name":"Claude Opus 4.7",  "provider":"Anthropic", "context":"200K", "inputPer1M":15.00, "outputPer1M":75.00, "multimodal":true,  "cutoff":"מאי 2025", "api":true, "bench":95.8},
+  {"name":"Claude Sonnet 4.6","provider":"Anthropic", "context":"200K", "inputPer1M":3.00,  "outputPer1M":15.00, "multimodal":true,  "cutoff":"מאי 2025", "api":true, "bench":93.1},
+  {"name":"Claude Haiku 4.5", "provider":"Anthropic", "context":"200K", "inputPer1M":0.80,  "outputPer1M":4.00,  "multimodal":true,  "cutoff":"מאי 2025", "api":true, "bench":84.5},
+  {"name":"Gemini 2.5 Pro",   "provider":"Google",    "context":"2M",   "inputPer1M":1.25,  "outputPer1M":10.00, "multimodal":true,  "cutoff":"ינו׳ 2025","api":true, "bench":94.9},
+  {"name":"Gemini 2.0 Flash", "provider":"Google",    "context":"1M",   "inputPer1M":0.075, "outputPer1M":0.30,  "multimodal":true,  "cutoff":"ינו׳ 2025","api":true, "bench":87.2},
+  {"name":"Llama 3.3 70B",    "provider":"Meta",      "context":"128K", "inputPer1M":0.59,  "outputPer1M":0.79,  "multimodal":false, "cutoff":"דצ׳ 2023", "api":false,"bench":80.3},
+  {"name":"Mistral Large 2",  "provider":"Mistral",   "context":"128K", "inputPer1M":2.00,  "outputPer1M":6.00,  "multimodal":false, "cutoff":"מאר׳ 2024","api":true, "bench":81.2},
+  {"name":"DeepSeek V3",      "provider":"DeepSeek",  "context":"128K", "inputPer1M":0.27,  "outputPer1M":1.10,  "multimodal":false, "cutoff":"נוב׳ 2024","api":true, "bench":88.5}
+]

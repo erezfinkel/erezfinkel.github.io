@@ -872,6 +872,112 @@
   .back-to-top.visible { opacity: 1; pointer-events: auto; }
   .back-to-top:hover { transform: translateY(-3px); }
 
+  /* ─── TOOL PAGES ─── */
+  .tool-page { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+  .tool-breadcrumb { font-size: 13px; color: var(--ink-3); margin-bottom: 24px; display: flex; gap: 6px; }
+  .tool-breadcrumb a { color: var(--accent); font-weight: 600; }
+  .tool-title { font-family: var(--font-serif); font-size: clamp(26px,4vw,38px); font-weight: 900; color: var(--ink); margin-bottom: 8px; }
+  .tool-subtitle { font-size: 16px; color: var(--ink-3); margin-bottom: 36px; }
+
+  /* Token Counter */
+  .token-textarea {
+    width: 100%; min-height: 180px; padding: 16px;
+    font-family: var(--font-ui); font-size: 15px; line-height: 1.7;
+    border: 1.5px solid var(--border); background: var(--bg); color: var(--ink);
+    resize: vertical; outline: none; border-radius: 4px;
+    transition: border-color 0.2s;
+  }
+  .token-textarea:focus { border-color: var(--accent); }
+  .token-stats { display: flex; gap: 20px; margin: 10px 0 28px; font-size: 13px; color: var(--ink-3); flex-wrap: wrap; }
+  .token-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .token-card {
+    background: var(--bg-card); border: 1px solid var(--border); padding: 20px;
+    border-radius: 4px; transition: border-color 0.2s;
+  }
+  .token-card:hover { border-color: var(--border-strong); }
+  .token-card-provider { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .token-card-model { font-family: var(--font-serif); font-size: 15px; font-weight: 700; margin-bottom: 14px; }
+  .token-card-count { font-size: 38px; font-weight: 900; font-family: var(--font-serif); line-height: 1; color: var(--ink); }
+  .token-card-label { font-size: 11px; color: var(--ink-4); margin: 3px 0 14px; }
+  .token-card-cost { border-top: 1px solid var(--border); padding-top: 12px; }
+  .token-card-cost-val { font-size: 17px; font-weight: 700; color: var(--accent); }
+  .token-card-cost-rate { font-size: 11px; color: var(--ink-4); margin-top: 2px; }
+
+  /* Cost Calculator */
+  .cost-inputs { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 32px; }
+  @media (max-width: 620px) { .cost-inputs { grid-template-columns: 1fr; } }
+  .cost-input-group label { display: block; font-size: 12px; font-weight: 700; color: var(--ink-3); margin-bottom: 6px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .cost-input-group input {
+    width: 100%; padding: 10px 14px; border: 1.5px solid var(--border);
+    background: var(--bg); color: var(--ink); font-family: var(--font-ui); font-size: 15px;
+    border-radius: 4px; outline: none; transition: border-color 0.2s; text-align: left; direction: ltr;
+  }
+  .cost-input-group input:focus { border-color: var(--accent); }
+  .cost-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .cost-table th { text-align: right; padding: 10px 14px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); border-bottom: 2px solid var(--border); }
+  .cost-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .cost-table tr:hover td { background: var(--bg-alt); }
+  .cost-bar { height: 6px; border-radius: 3px; background: var(--accent); transition: width 0.4s ease; min-width: 4px; }
+  .cost-bar-wrap { background: var(--border); border-radius: 3px; overflow: hidden; width: 120px; }
+  .export-btn { margin-top: 20px; padding: 10px 22px; background: var(--accent); color: white; border: none; font-family: var(--font-ui); font-size: 14px; font-weight: 700; border-radius: 4px; cursor: pointer; transition: background 0.2s; }
+  .export-btn:hover { background: var(--accent-hover); }
+
+  /* Prompt Library */
+  .prompt-search-bar { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+  .prompt-search-input {
+    flex: 1; min-width: 200px; padding: 10px 14px; border: 1.5px solid var(--border);
+    background: var(--bg); color: var(--ink); font-family: var(--font-ui); font-size: 14px;
+    border-radius: 4px; outline: none; transition: border-color 0.2s; direction: rtl;
+  }
+  .prompt-search-input:focus { border-color: var(--accent); }
+  .cat-filters { display: flex; gap: 8px; flex-wrap: wrap; }
+  .cat-btn { padding: 7px 14px; border: 1.5px solid var(--border); background: var(--bg-card); color: var(--ink-2); font-size: 13px; font-weight: 600; border-radius: 4px; cursor: pointer; transition: all 0.15s; font-family: var(--font-ui); }
+  .cat-btn.active, .cat-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+  .prompt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .prompt-card { background: var(--bg-card); border: 1px solid var(--border); padding: 20px; border-radius: 4px; display: flex; flex-direction: column; transition: border-color 0.2s, box-shadow 0.2s; }
+  .prompt-card:hover { border-color: var(--border-strong); box-shadow: 0 4px 16px oklch(0% 0 0 / 0.07); }
+  .prompt-cat-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .prompt-card-title { font-family: var(--font-serif); font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .prompt-card-desc { font-size: 13px; color: var(--ink-3); margin-bottom: 14px; flex: 1; }
+  .prompt-preview { background: var(--bg); border: 1px solid var(--border); border-radius: 3px; padding: 10px 12px; font-size: 12px; color: var(--ink-2); line-height: 1.6; max-height: 80px; overflow: hidden; margin-bottom: 14px; direction: rtl; text-align: right; position: relative; }
+  .prompt-preview::after { content: ''; position: absolute; bottom: 0; right: 0; left: 0; height: 28px; background: linear-gradient(transparent, var(--bg)); }
+  .prompt-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+  .prompt-tag { font-size: 11px; background: var(--bg-alt); border: 1px solid var(--border); color: var(--ink-3); padding: 2px 8px; border-radius: 10px; }
+  .prompt-copy-btn { padding: 8px 0; border: 1.5px solid var(--accent); color: var(--accent); background: transparent; font-family: var(--font-ui); font-size: 13px; font-weight: 700; border-radius: 4px; cursor: pointer; transition: all 0.15s; }
+  .prompt-copy-btn:hover, .prompt-copy-btn.copied { background: var(--accent); color: white; }
+
+  /* Model Comparison */
+  .model-filters { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
+  .model-filter-label { font-size: 12px; font-weight: 700; color: var(--ink-3); margin-left: 4px; }
+  .model-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .model-table { width: 100%; border-collapse: collapse; font-size: 13.5px; white-space: nowrap; }
+  .model-table th { text-align: right; padding: 10px 14px; font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-3); border-bottom: 2px solid var(--border); cursor: pointer; user-select: none; white-space: nowrap; background: var(--bg-card); }
+  .model-table th:hover { color: var(--accent); }
+  .model-table th .sort-arrow { margin-right: 4px; opacity: 0.4; }
+  .model-table th.sorted .sort-arrow { opacity: 1; color: var(--accent); }
+  .model-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); }
+  .model-table tr:hover td { background: var(--bg-alt); }
+  .model-name { font-weight: 700; color: var(--ink); }
+  .model-provider { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+  .badge-yes { background: oklch(92% 0.06 145); color: oklch(36% 0.14 145); }
+  .badge-no  { background: var(--bg-alt); color: var(--ink-4); }
+
+  /* Tools Landing Cards */
+  .tool-landing-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; margin-bottom: 56px; }
+  @media (max-width: 640px) { .tool-landing-grid { grid-template-columns: 1fr; } .token-cards { grid-template-columns: repeat(2,1fr); } }
+  .tool-landing-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    padding: 28px; border-radius: 4px; cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    text-align: right;
+  }
+  .tool-landing-card:hover { border-color: var(--accent); box-shadow: 0 6px 24px oklch(0% 0 0 / 0.09); transform: translateY(-2px); }
+  .tool-landing-icon { font-size: 32px; margin-bottom: 14px; }
+  .tool-landing-name { font-family: var(--font-serif); font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+  .tool-landing-desc { font-size: 14px; color: var(--ink-3); line-height: 1.6; }
+  .tool-landing-arrow { margin-top: 16px; font-size: 13px; color: var(--accent); font-weight: 700; }
+
   /* ─── SAVED PAGE EMPTY STATE ─── */
   .empty-state {
     text-align: center;
@@ -1076,6 +1182,113 @@ const ARTICLES = [
 
 const TAGS = ["ChatGPT", "Claude", "Gemini", "OpenAI", "Anthropic", "AI Agents", "סייבר", "מדריכים", "מחקר", "ישראל"];
 
+// ─── TOOLS DATA ──────────────────────────────────────────────────────────────
+
+const PRICING_DATA = [
+  { id: 'gpt4o',          name: 'GPT-4o',            provider: 'OpenAI',    inputPer1M: 2.50,  outputPer1M: 10.00, color: '#10a37f' },
+  { id: 'gpt4o-mini',     name: 'GPT-4o mini',       provider: 'OpenAI',    inputPer1M: 0.15,  outputPer1M: 0.60,  color: '#10a37f' },
+  { id: 'o3',             name: 'o3',                 provider: 'OpenAI',    inputPer1M: 10.00, outputPer1M: 40.00, color: '#10a37f' },
+  { id: 'claude-sonnet',  name: 'Claude Sonnet 4.6',  provider: 'Anthropic', inputPer1M: 3.00,  outputPer1M: 15.00, color: '#d97706' },
+  { id: 'claude-opus',    name: 'Claude Opus 4.7',    provider: 'Anthropic', inputPer1M: 15.00, outputPer1M: 75.00, color: '#d97706' },
+  { id: 'claude-haiku',   name: 'Claude Haiku 4.5',   provider: 'Anthropic', inputPer1M: 0.80,  outputPer1M: 4.00,  color: '#d97706' },
+  { id: 'gemini-pro',     name: 'Gemini 2.5 Pro',     provider: 'Google',    inputPer1M: 1.25,  outputPer1M: 10.00, color: '#4285f4' },
+  { id: 'gemini-flash',   name: 'Gemini 2.0 Flash',   provider: 'Google',    inputPer1M: 0.075, outputPer1M: 0.30,  color: '#4285f4' },
+];
+
+const MODELS_DATA = [
+  { name: 'GPT-4o',           provider: 'OpenAI',    context: '128K',  inputPer1M: 2.50,  outputPer1M: 10.00, multimodal: true,  cutoff: 'אפר׳ 2024', api: true,  bench: 88.7 },
+  { name: 'GPT-4o mini',      provider: 'OpenAI',    context: '128K',  inputPer1M: 0.15,  outputPer1M: 0.60,  multimodal: true,  cutoff: 'אפר׳ 2024', api: true,  bench: 82.0 },
+  { name: 'o3',               provider: 'OpenAI',    context: '200K',  inputPer1M: 10.00, outputPer1M: 40.00, multimodal: true,  cutoff: 'יול׳ 2025', api: true,  bench: 96.7 },
+  { name: 'Claude Opus 4.7',  provider: 'Anthropic', context: '200K',  inputPer1M: 15.00, outputPer1M: 75.00, multimodal: true,  cutoff: 'מאי 2025',  api: true,  bench: 95.8 },
+  { name: 'Claude Sonnet 4.6',provider: 'Anthropic', context: '200K',  inputPer1M: 3.00,  outputPer1M: 15.00, multimodal: true,  cutoff: 'מאי 2025',  api: true,  bench: 93.1 },
+  { name: 'Claude Haiku 4.5', provider: 'Anthropic', context: '200K',  inputPer1M: 0.80,  outputPer1M: 4.00,  multimodal: true,  cutoff: 'מאי 2025',  api: true,  bench: 84.5 },
+  { name: 'Gemini 2.5 Pro',   provider: 'Google',    context: '2M',    inputPer1M: 1.25,  outputPer1M: 10.00, multimodal: true,  cutoff: 'ינו׳ 2025', api: true,  bench: 94.9 },
+  { name: 'Gemini 2.0 Flash', provider: 'Google',    context: '1M',    inputPer1M: 0.075, outputPer1M: 0.30,  multimodal: true,  cutoff: 'ינו׳ 2025', api: true,  bench: 87.2 },
+  { name: 'Llama 3.3 70B',    provider: 'Meta',      context: '128K',  inputPer1M: 0.59,  outputPer1M: 0.79,  multimodal: false, cutoff: 'דצ׳ 2023',  api: false, bench: 80.3 },
+  { name: 'Mistral Large 2',  provider: 'Mistral',   context: '128K',  inputPer1M: 2.00,  outputPer1M: 6.00,  multimodal: false, cutoff: 'מאר׳ 2024', api: true,  bench: 81.2 },
+  { name: 'DeepSeek V3',      provider: 'DeepSeek',  context: '128K',  inputPer1M: 0.27,  outputPer1M: 1.10,  multimodal: false, cutoff: 'נוב׳ 2024', api: true,  bench: 88.5 },
+];
+
+const PROMPTS_DATA = [
+  // ─── כתיבה ───
+  { id:1, cat:'כתיבה', title:'מייל מקצועי מנצח', desc:'כתיבת מייל שמייצר תגובה', tags:['עסקים','תקשורת'],
+    prompt:'אתה מומחה לתקשורת עסקית. כתוב מייל מקצועי בנושא [נושא] שמיועד ל[קהל יעד]. המייל צריך להיות: ממוקד ועניני, לכלול קריאה ברורה לפעולה, ולא לעלות על 150 מילה. תוצאה רצויה: [מה אתה רוצה שיקרה לאחר קריאת המייל].' },
+  { id:2, cat:'כתיבה', title:'סיכום ישיבה ברור', desc:'הפוך הערות גולמיות לפרוטוקול מסודר', tags:['פרודוקטיביות','עסקים'],
+    prompt:'להלן הערות מישיבה: [הכנס הערות]. סכם את הישיבה בפורמט הבא:\n✅ החלטות שהתקבלו\n📋 משימות לביצוע (כולל אחראי ותאריך יעד)\n⚠️ נושאים פתוחים\n📅 ישיבה הבאה: [תאריך ונושא]' },
+  { id:3, cat:'כתיבה', title:'פוסט LinkedIn מקצועי', desc:'פוסט שמייצר engagement', tags:['מדיה חברתית','מיתוג'],
+    prompt:'כתוב פוסט LinkedIn על [נושא/הישג/תובנה]. הפוסט צריך: להתחיל ב-hook חזק בשורה ראשונה, לכלול 3-5 תובנות ממשיות, להסתיים בשאלה שמעוררת תגובות, ולהיות בין 150-300 מילה. הכל בגוף ראשון, טון אותנטי ולא שיווקי.' },
+  { id:4, cat:'כתיבה', title:'תיאור מוצר שמוכר', desc:'תיאור שמתמקד בערך ולא בפיצ׳רים', tags:['שיווק','מוצר'],
+    prompt:'כתוב תיאור מוצר עבור [שם מוצר] שמיועד ל[קהל יעד]. הדגש: בעיה שפותר, לא רשימת פיצ׳רים. כלול: כותרת שמושכת תשומת לב, 3 יתרונות עיקריים מנקודת מבט הלקוח, social proof אם רלוונטי, ו-CTA ברור. אורך: 80-120 מילה.' },
+  { id:5, cat:'כתיבה', title:'PRD — מסמך דרישות מוצר', desc:'תבנית PRD מלאה לפיצ׳ר חדש', tags:['מוצר','פיתוח'],
+    prompt:'כתוב PRD לפיצ׳ר: [תיאור הפיצ׳ר]. כלול: 1) סיכום מנהלים, 2) בעיה ומשתמשי יעד, 3) יעדים ומדדי הצלחה (KPIs), 4) דרישות פונקציונליות (חייב/נחמד לקיים), 5) דרישות לא-פונקציונליות, 6) Out of scope, 7) שאלות פתוחות.' },
+  { id:6, cat:'כתיבה', title:'תסריט וידאו קצר', desc:'תסריט ל-60-90 שניות', tags:['תוכן','וידאו'],
+    prompt:'כתוב תסריט לוידאו של 60-90 שניות על [נושא]. מבנה: Hook (5 שניות) → בעיה (10 שניות) → פתרון/תוכן (35-50 שניות) → CTA (10 שניות). כלול הוראות בימוי בסוגריים ומשפטים קצרים מתאימים לדיבור.' },
+  { id:7, cat:'כתיבה', title:'תגובה לביקורת שלילית', desc:'תגובה מקצועית שמשדרגת את המותג', tags:['שירות לקוחות','מותג'],
+    prompt:'לקוח כתב ביקורת שלילית: "[טקסט הביקורת]". כתוב תגובה שמכילה: הכרה בחוויה של הלקוח ללא הגנתיות, התנצלות כנה, הצעת פתרון קונקרטי, ולקיחת השיחה לערוץ פרטי. אל תשתמש בשפה קופירייטינגית מוגזמת.' },
+  { id:8, cat:'כתיבה', title:'ניוזלטר שבועי', desc:'תבנית ניוזלטר שאנשים פותחים', tags:['תוכן','מייל'],
+    prompt:'כתוב ניוזלטר שבועי בנושא [תחום] בפורמט: שורת נושא מסקרנת (A/B: 2 אפשרויות), פתיחה אישית (2 משפטים), תוכן מרכזי (3 רעיונות/ידיעות עם הסבר קצר), המלצה השבוע (כלי/ספר/מאמר), ושורת סיכום. 300-400 מילה.' },
+
+  // ─── קוד ───
+  { id:9, cat:'קוד', title:'בדיקות יחידה מקיפות', desc:'כיסוי edge cases שמפתחים שוכחים', tags:['testing','פיתוח'],
+    prompt:'כתוב בדיקות יחידה עבור הפונקציה הבאה:\n```\n[הכנס קוד]\n```\nכלול: happy path, edge cases (null, undefined, empty, max values), שגיאות צפויות, ו-async cases אם רלוונטי. השתמש ב-[Jest/Pytest/Vitest — בחר]. הוסף תיאור ל-describe/it שמסביר כוונה.' },
+  { id:10, cat:'קוד', title:'Code Review מקצועי', desc:'סקירה שמשפרת גם קוד גם מפתח', tags:['review','פיתוח'],
+    prompt:'בצע code review לקוד הבא:\n```\n[הכנס קוד]\n```\nהערך לפי: 1) נכונות ובאגים פוטנציאליים, 2) ביצועים ומורכבות, 3) קריאות ותחזוקה, 4) אבטחה, 5) עמידה ב-best practices. פורמט: 🔴 קריטי | 🟡 משפר | 🟢 טוב. הצע קוד חלופי לכל הערה.' },
+  { id:11, cat:'קוד', title:'תיעוד API מלא', desc:'תיעוד שמפתחים באמת ישתמשו בו', tags:['documentation','API'],
+    prompt:'כתוב תיעוד מלא ל-API endpoint הבא:\n[תיאור ה-endpoint]\nכלול: תיאור, HTTP method ו-URL, פרמטרים (query/body/headers) עם טיפוסים ותיאורים, responses (200/400/401/404/500), דוגמאות curl ו-JavaScript fetch, ו-rate limits אם רלוונטי.' },
+  { id:12, cat:'קוד', title:'Debug שיטתי', desc:'מצא את הבאג שהטריף אותך שעות', tags:['debugging','פיתוח'],
+    prompt:'אני נתקל בבאג: [תיאור הבעיה]\nסביבה: [שפה/framework/גרסה]\nקוד רלוונטי:\n```\n[קוד]\n```\nמה ניסיתי: [רשימת ניסיונות]\nErrror message: [הודעת שגיאה]\n\nנתח את הבעיה שלב אחר שלב. זהה את הסיבה השורשית והצע 2-3 פתרונות, מהפשוט למורכב.' },
+  { id:13, cat:'קוד', title:'Refactor לקוד נקי', desc:'שפר ביצועים ותחזוקה בלי לשבור', tags:['refactoring','clean-code'],
+    prompt:'רפקטור את הקוד הבא תוך שמירה על פונקציונליות זהה:\n```\n[קוד]\n```\nיעדים: הסרת כפילויות (DRY), שיפור שמות, הפחתת מורכבות ציקלומטית, וbiצוע אם רלוונטי. הסבר כל שינוי ומדוע.' },
+  { id:14, cat:'קוד', title:'Security Audit מהיר', desc:'מצא חולשות לפני שהאקרים ימצאו', tags:['security','אבטחה'],
+    prompt:'בצע סקירת אבטחה לקוד הבא:\n```\n[קוד]\n```\nחפש: SQL/NoSQL injection, XSS, CSRF, exposed secrets, שגיאות authentication/authorization, unvalidated input, ו-insecure dependencies. דרג חומרה (Critical/High/Medium/Low) ותן תיקון לכל ממצא.' },
+  { id:15, cat:'קוד', title:'Git commit message', desc:'commit message שיהיה מובן עוד שנה', tags:['git','best-practices'],
+    prompt:'כתוב git commit message לשינויים הבאים:\n[תיאור השינויים]\nעקב אחרי Conventional Commits: type(scope): description\nTypes: feat/fix/docs/style/refactor/test/chore\nכלול: שורה ראשונה עד 72 תווים, גוף שמסביר מדוע (לא מה), ו-footer לissues רלוונטיים.' },
+
+  // ─── ניתוח ───
+  { id:16, cat:'ניתוח', title:'ניתוח תחרותי', desc:'הבן את המתחרים לעומק', tags:['אסטרטגיה','עסקים'],
+    prompt:'בצע ניתוח תחרותי של [החברה/מוצר שלי] מול המתחרים: [מתחרה1, מתחרה2, מתחרה3].\nלכל מתחרה: מיצוב ו-ICP, נקודות חוזק, חולשות, ומחיר. לאחר מכן: מטריצת השוואה, הזדמנויות שאף אחד לא ממלא, והמלצה אסטרטגית לבידול.' },
+  { id:17, cat:'ניתוח', title:'ניתוח SWOT עמוק', desc:'מעבר לרשימה — מסקנות שניתנות לפעולה', tags:['אסטרטגיה','תכנון'],
+    prompt:'בצע ניתוח SWOT מעמיק עבור [ארגון/מוצר/פרויקט].\nלכל רבעון: 4-5 פריטים עם הסבר. לאחר מכן: 1) SO strategies (strength × opportunity), 2) WO strategies (address weaknesses using opportunities), 3) ST strategies, 4) WT strategies. תעדוף לפי השפעה ואפשרות ביצוע.' },
+  { id:18, cat:'ניתוח', title:'ניתוח פידבק לקוחות', desc:'הפוך מאות תגובות לתובנות', tags:['לקוחות','מוצר'],
+    prompt:'נתח את פידבק הלקוחות הבא:\n[הכנס פידבקים]\nזהה: 1) 3 נושאים חוזרים מרכזיים, 2) sentiment כללי (חיובי/שלילי/מעורב), 3) בעיות קריטיות שדורשות טיפול מיידי, 4) הזדמנויות פיתוח, 5) ציטוטים מייצגים לכל קטגוריה.' },
+  { id:19, cat:'ניתוח', title:'ניתוח נתונים גולמיים', desc:'הפוך מספרים לסיפור', tags:['נתונים','עסקים'],
+    prompt:'נתח את הנתונים הבאים:\n[הכנס נתונים/טבלה]\nספק: 1) מגמות עיקריות, 2) חריגות ואנומליות, 3) קורלציות מעניינות, 4) השוואה לבנצ׳מארק אם רלוונטי, 5) 3 המלצות מבוססות נתונים. הצג בצורה שמתאימה לדיווח הנהלה.' },
+  { id:20, cat:'ניתוח', title:'ניתוח סיכונים', desc:'מצא את מה שיכול להשתבש לפני שקורה', tags:['ניהול סיכונים','תכנון'],
+    prompt:'בצע ניתוח סיכונים עבור [פרויקט/החלטה/השקעה].\nלכל סיכון: תיאור, הסתברות (1-5), השפעה (1-5), ציון כולל, ואסטרטגיית מיטיגציה. ארגן לפי: סיכוני ביצוע, סיכוני שוק, סיכונים טכניים, סיכונים רגולטוריים. הכן plan B לשלושת הסיכונים הגבוהים ביותר.' },
+  { id:21, cat:'ניתוח', title:'Framework להחלטה קשה', desc:'קבל החלטות חשובות בצורה מובנית', tags:['החלטות','אסטרטגיה'],
+    prompt:'עזור לי להחליט: [תיאור ההחלטה]\nאפשרויות: [אפשרות A, B, C]\nקריטריונים חשובים לי: [רשימה]\n\nנתח באמצעות: 1) טבלת השוואה עם ניקוד, 2) pre-mortem לכל אפשרות, 3) reversibility — כמה קשה לחזור, 4) 2nd order effects, 5) המלצה עם הסבר.' },
+
+  // ─── יצירתיות ───
+  { id:22, cat:'יצירתיות', title:'שמות לפרויקט/מוצר', desc:'שמות שנדבקים לזיכרון', tags:['מיתוג','מוצר'],
+    prompt:'צור 15 אפשרויות שם עבור [תיאור המוצר/פרויקט] שמיועד ל[קהל יעד]. לכל שם: פירוש/אסוציאציה, האם זמין כ-.com (לא בדוק בפועל), וציון 1-5 למשכיות. קטגוריות: שמות תיאוריים, שמות המצאתיים, ראשי תיבות, מטאפורות.' },
+  { id:23, cat:'יצירתיות', title:'רעיונות לקמפיין שיווקי', desc:'10 רעיונות שאחד מהם יהיה מדהים', tags:['שיווק','קריאייטיב'],
+    prompt:'צור 10 רעיונות לקמפיין שיווקי עבור [מוצר/שירות] שמיועד ל[קהל]. לכל רעיון: כותרת, תיאור ב-2 משפטים, ערוץ מועדף, ו-hook מרכזי. כלול רעיון שבוע לפחות אחד ויראלי פוטנציאלי ואחד מבוסס content.' },
+  { id:24, cat:'יצירתיות', title:'Tagline שנזכרים בו', desc:'5-7 מילים שמגדירות את המותג', tags:['מיתוג','שיווק'],
+    prompt:'צור 20 taglines עבור [מותג/מוצר] שמדגיש [ערך מרכזי]. כל tagline עד 7 מילים בעברית. קטגוריות (5 מכל): ישיר ועניני, רגשי, הומוריסטי, aspirational, ופרובוקטיבי. לאחר מכן בחר את ה-3 המובילים עם הסבר.' },
+  { id:25, cat:'יצירתיות', title:'Feature Release — תיאור שמרגש', desc:'הודעה שגורמת ל-users לנסות', tags:['מוצר','תוכן'],
+    prompt:'כתוב הודעת Feature Release עבור [שם הפיצ׳ר] ב[המוצר]. בפורמט: כותרת 🎉, משפט פתיחה שמדבר על הבעיה שנפתרה, 3 bullet points של יתרונות (לא פיצ׳רים טכניים), GIF/screenshot placeholder, link לתיעוד, ו-CTA. טון: excited but professional.' },
+  { id:26, cat:'יצירתיות', title:'Worldbuilding ליצירה', desc:'בנה עולם עם כללים עקביים', tags:['כתיבה יוצרת','בניית עולם'],
+    prompt:'בנה עולם ל[ז׳אנר: fantasy/sci-fi/dystopia] עם: מערכת גאוגרפית (3 אזורים מרכזיים), מערכת כוח/שלטון, הטכנולוגיה הזמינה ומה חסר, 3 סיעות עיקריות עם מטרות מנוגדות, היסטוריה בת 100 שנה, ו-3 mysteries שמניעים עלילות. כלול כללים שמגבילים את הגיבור.' },
+  { id:27, cat:'יצירתיות', title:'סיפור קצר — תחילה', desc:'פרק ראשון שגורם לקרוא הלאה', tags:['כתיבה יוצרת','סיפורת'],
+    prompt:'כתוב פתיחה לסיפור קצר (500-700 מילה) עם: דמות ראשית שיש לה רצון ברור ומכשול, הצגת הסביבה דרך פרטים חושיים ספציפיים (לא תיאור כללי), conflict שמתחיל בשורה הראשונה, וסיום הפרק ב-cliffhanger. ז׳אנר: [בחר]. אל תשתמש בקלישאות.' },
+
+  // ─── פרודוקטיביות ───
+  { id:28, cat:'פרודוקטיביות', title:'תכנון שבוע אסטרטגי', desc:'שבוע שמקדם מטרות גדולות', tags:['ניהול זמן','OKR'],
+    prompt:'עזור לי לתכנן את השבוע הקרוב. המטרות הגדולות שלי לרבעון: [רשימה]. פרויקטים פעילים: [רשימה]. אירועים קבועים השבוע: [רשימה]. בהתחשב ב-energy management ו-deep work: הצע חלוקת זמן יומית, זהה 3 MIT (Most Important Tasks) לשבוע, והצע מה לדחות/למחוק/לאצול.' },
+  { id:29, cat:'פרודוקטיביות', title:'OKR — ניסוח שעובד', desc:'יעדים שמניעים צוות ולא רק נמדדים', tags:['OKR','ניהול'],
+    prompt:'עזור לי לנסח OKRs עבור [צוות/חברה] ל[תקופה]. המטרה הגבוהה יותר היא: [מטרת החברה]. תחומי אחריות: [רשימה].\n\nלכל Objective: כתוב אותו כמשפט inspirational, הוסף 3-4 Key Results שהם מדידים, specific, ו-outcome-based (לא output-based). הוסף warning signs לכל KR.' },
+  { id:30, cat:'פרודוקטיביות', title:'תדרוך לעובד חדש', desc:'Onboarding שמקצר זמן עד לתרומה', tags:['HR','ניהול'],
+    prompt:'כתוב תוכנית onboarding ל[תפקיד] שמצטרף לצוות [שם צוות]. כלול:\n📅 יום 1: מה חייב לדעת/לעשות\n📅 שבוע 1: מטרות ופגישות\n📅 30 יום: milestone ראשון\n📅 90 יום: עצמאות מלאה\nלכל שלב: משאבים, אנשי קשר מפתח, ו-quick win מוגדר.' },
+  { id:31, cat:'פרודוקטיביות', title:'פירוק משימה גדולה', desc:'הפוך "כל הפרויקט" לצעד הבא', tags:['ניהול פרויקטים','GTD'],
+    prompt:'פרק את המשימה הבאה לחלקים: "[תיאור המשימה הגדולה]"\nיצור: 1) Epic (מטרת-העל), 2) User Stories (מי צריך מה ולמה), 3) Tasks טכניות לכל story, 4) תלויות בין tasks, 5) הערכת זמן לכל task, 6) ה-MVP המינימלי שמספק ערך. תסדר ב-Kanban columns: Backlog/To Do/In Progress/Done.' },
+  { id:32, cat:'פרודוקטיביות', title:'Sprint Retrospective', desc:'לנקות לאחר ספרינט ולשפר', tags:['אג׳ייל','צוות'],
+    prompt:'הנחה רטרוספקטיבת ספרינט. הספרינט כלל: [מה עשינו]. מה עבד טוב: [רשימה]. מה לא עבד: [רשימה]. אירועים חיצוניים שהשפיעו: [רשימה].\n\nספק: תקציר מהיר, 3 דברים לשמר, 3 לשפר עם action items קונקרטיים ואחראי, ו-experiment אחד לנסות בספרינט הבא.' },
+  { id:33, cat:'פרודוקטיביות', title:'מייל דחייה מכובד', desc:'תגיד לא בלי לפגוע בקשר', tags:['תקשורת','גבולות'],
+    prompt:'עזור לי לדחות את הבקשה הבאה בצורה מכובדת: "[הבקשה]"\nהקשר: [מה הקשר שלי עם האדם? מה הסיבה האמיתית לדחייה?]\n\nכתוב מייל שמכיל: הכרה בבקשה ב-specificity, הסבר תמציתי (לא סיפורי כיסוי), הצעת alternative אם קיים, ו-חיזוק הקשר. ללא התנצלות מוגזמת.' },
+  { id:34, cat:'פרודוקטיביות', title:'תבנית ישיבה יעילה', desc:'ישיבות שמסתיימות בהחלטות', tags:['ניהול','פרודוקטיביות'],
+    prompt:'צור agenda לישיבה על [נושא] עם [מספר] משתתפים שמשך 60 דקות. כלול: מטרה ברורה, חלוקת זמן לפי נושאים (עם buffer), הכנה נדרשת ממשתתפים לפני, כלל decision-making (consensus/vote/DACI), ו-template לסיכום בסוף. הישיבה צריכה להסתיים עם 3 החלטות ו-owners ברורים.' },
+];
+
 // ─── ICONS ──────────────────────────────────────────────────────────────────
 const SunIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -1151,6 +1364,294 @@ function TOCWidget({ headings }) {
           </a>
         ))}
       </nav>
+    </div>
+  );
+}
+
+// ─── TOKEN ESTIMATION ────────────────────────────────────────────────────────
+
+function estimateTokens(text) {
+  if (!text.trim()) return 0;
+  const hebrewChars = (text.match(/[֐-׿]/g) || []).length;
+  const otherChars  = text.length - hebrewChars;
+  return Math.max(1, Math.round(hebrewChars / 1.8 + otherChars / 3.8));
+}
+
+// ─── TOOL PAGES ──────────────────────────────────────────────────────────────
+
+function ToolBreadcrumb({ onNav, current }) {
+  return (
+    <div className="tool-breadcrumb">
+      <a href="#" onClick={e => { e.preventDefault(); onNav('tools'); }}>← כלים</a>
+      <span>/</span><span>{current}</span>
+    </div>
+  );
+}
+
+/* ── 3.1 Token Counter ── */
+function TokenCounterPage({ onNav }) {
+  const [text, setText] = useState('');
+  const chars = text.length;
+  const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+  const baseTokens = estimateTokens(text);
+
+  return (
+    <div className="page active">
+      <div className="tool-page">
+        <ToolBreadcrumb onNav={onNav} current="סופר טוקנים" />
+        <h1 className="tool-title">סופר טוקנים</h1>
+        <p className="tool-subtitle">הערך את מספר הטוקנים והעלות הצפויה לפי מודל — בזמן אמת</p>
+
+        <textarea
+          className="token-textarea"
+          dir="rtl"
+          placeholder="הכניסו טקסט בעברית, אנגלית, קוד..."
+          value={text}
+          onChange={e => setText(e.target.value)}
+          aria-label="טקסט לספירת טוקנים"
+        />
+        <div className="token-stats">
+          <span><strong>{chars.toLocaleString()}</strong> תווים</span>
+          <span><strong>{words.toLocaleString()}</strong> מילים</span>
+          <span style={{marginRight:'auto',color:'var(--ink-4)',fontSize:'12px'}}>
+            * אומדן휴리סטי — לא tiktoken מדויק
+          </span>
+        </div>
+
+        <div className="token-cards">
+          {PRICING_DATA.map(m => {
+            const tokens = Math.round(baseTokens * (m.id.startsWith('claude') ? 0.97 : m.id.startsWith('gemini') ? 1.03 : 1));
+            const cost   = (tokens / 1_000_000) * m.inputPer1M;
+            return (
+              <div className="token-card" key={m.id}>
+                <div className="token-card-provider">{m.provider}</div>
+                <div className="token-card-model">{m.name}</div>
+                <div className="token-card-count">{text ? tokens.toLocaleString() : '—'}</div>
+                <div className="token-card-label">טוקנים</div>
+                <div className="token-card-cost">
+                  <div className="token-card-cost-val">{text ? (cost < 0.00005 ? '<$0.0001' : `$${cost.toFixed(4)}`) : '—'}</div>
+                  <div className="token-card-cost-rate">${m.inputPer1M.toFixed(3)} / 1M קלט</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── 3.2 Cost Calculator ── */
+function CostCalculatorPage({ onNav }) {
+  const [inputTok,  setInputTok]  = useState(1000);
+  const [outputTok, setOutputTok] = useState(500);
+  const [reqDay,    setReqDay]    = useState(100);
+
+  const rows = PRICING_DATA.map(m => {
+    const costPerReq = (inputTok / 1_000_000) * m.inputPer1M + (outputTok / 1_000_000) * m.outputPer1M;
+    const daily   = costPerReq * reqDay;
+    const monthly = daily * 30;
+    const yearly  = daily * 365;
+    return { ...m, daily, monthly, yearly };
+  }).sort((a, b) => a.monthly - b.monthly);
+
+  const maxMonthly = Math.max(...rows.map(r => r.monthly), 0.0001);
+
+  const exportCSV = () => {
+    const header = 'מודל,ספק,יומי ($),חודשי ($),שנתי ($)';
+    const lines  = rows.map(r => `"${r.name}","${r.provider}",${r.daily.toFixed(4)},${r.monthly.toFixed(2)},${r.yearly.toFixed(2)}`);
+    const blob   = new Blob([[header, ...lines].join('\n')], { type: 'text/csv;charset=utf-8;' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = 'ai-cost-comparison.csv'; a.click();
+  };
+
+  const numInput = (val, set) => (
+    <input type="number" min="0" value={val}
+      onChange={e => set(Math.max(0, parseInt(e.target.value) || 0))} />
+  );
+
+  return (
+    <div className="page active">
+      <div className="tool-page">
+        <ToolBreadcrumb onNav={onNav} current="מחשבון עלויות" />
+        <h1 className="tool-title">מחשבון עלויות AI</h1>
+        <p className="tool-subtitle">השווה עלויות חודשיות ושנתיות בין כל מודלי ה-AI המובילים</p>
+
+        <div className="cost-inputs">
+          <div className="cost-input-group"><label>טוקני קלט לבקשה</label>{numInput(inputTok, setInputTok)}</div>
+          <div className="cost-input-group"><label>טוקני פלט לבקשה</label>{numInput(outputTok, setOutputTok)}</div>
+          <div className="cost-input-group"><label>בקשות ביום</label>{numInput(reqDay, setReqDay)}</div>
+        </div>
+
+        <div className="model-table-wrap">
+          <table className="cost-table">
+            <thead>
+              <tr>
+                <th>מודל</th><th>ספק</th>
+                <th>יומי</th><th>חודשי</th><th>שנתי</th><th>השוואה</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map(r => (
+                <tr key={r.id}>
+                  <td style={{fontWeight:700}}>{r.name}</td>
+                  <td style={{color:'var(--ink-3)',fontSize:'12px'}}>{r.provider}</td>
+                  <td>${r.daily   < 0.01 ? r.daily.toFixed(4)   : r.daily.toFixed(2)}</td>
+                  <td style={{fontWeight:700}}>${r.monthly < 1 ? r.monthly.toFixed(3) : r.monthly.toFixed(2)}</td>
+                  <td>${r.yearly  < 1 ? r.yearly.toFixed(2)  : r.yearly.toFixed(0)}</td>
+                  <td>
+                    <div className="cost-bar-wrap">
+                      <div className="cost-bar" style={{width:`${Math.max(4,(r.monthly/maxMonthly)*100)}%`,background:r.color}} />
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <button className="export-btn" onClick={exportCSV} aria-label="ייצא כ-CSV">⬇ ייצא כ-CSV</button>
+      </div>
+    </div>
+  );
+}
+
+/* ── 3.3 Prompt Library ── */
+function PromptLibraryPage({ onNav }) {
+  const [query,   setQuery]   = useState('');
+  const [cat,     setCat]     = useState('הכל');
+  const [copied,  setCopied]  = useState(null);
+
+  const cats = ['הכל', ...Array.from(new Set(PROMPTS_DATA.map(p => p.cat)))];
+
+  const filtered = PROMPTS_DATA.filter(p => {
+    const matchCat   = cat === 'הכל' || p.cat === cat;
+    const q = query.toLowerCase();
+    const matchText  = !query || p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q) || p.prompt.toLowerCase().includes(q) || p.tags.some(t => t.toLowerCase().includes(q));
+    return matchCat && matchText;
+  });
+
+  const copy = (p) => {
+    navigator.clipboard.writeText(p.prompt).then(() => {
+      setCopied(p.id);
+      setTimeout(() => setCopied(null), 2000);
+    });
+  };
+
+  return (
+    <div className="page active">
+      <div className="tool-page" style={{maxWidth:'1100px'}}>
+        <ToolBreadcrumb onNav={onNav} current="ספריית פרומפטים" />
+        <h1 className="tool-title">ספריית פרומפטים</h1>
+        <p className="tool-subtitle">{PROMPTS_DATA.length}+ פרומפטים מוכנים בעברית — העתיקו, התאימו, השתמשו</p>
+
+        <div className="prompt-search-bar">
+          <input className="prompt-search-input" type="text" placeholder="חיפוש פרומפט..."
+            value={query} onChange={e => setQuery(e.target.value)} aria-label="חיפוש בספריית הפרומפטים" />
+        </div>
+        <div className="cat-filters" style={{marginBottom:'28px'}}>
+          {cats.map(c => (
+            <button key={c} className={`cat-btn${cat===c?' active':''}`} onClick={() => setCat(c)}>{c}</button>
+          ))}
+        </div>
+
+        {filtered.length === 0 && (
+          <p style={{color:'var(--ink-3)',textAlign:'center',padding:'40px 0'}}>לא נמצאו פרומפטים תואמים.</p>
+        )}
+        <div className="prompt-grid">
+          {filtered.map(p => (
+            <div className="prompt-card" key={p.id}>
+              <div className="prompt-cat-tag">{p.cat}</div>
+              <div className="prompt-card-title">{p.title}</div>
+              <div className="prompt-card-desc">{p.desc}</div>
+              <div className="prompt-preview">{p.prompt}</div>
+              <div className="prompt-tags">{p.tags.map(t => <span className="prompt-tag" key={t}>{t}</span>)}</div>
+              <button className={`prompt-copy-btn${copied===p.id?' copied':''}`} onClick={() => copy(p)}>
+                {copied === p.id ? '✓ הועתק!' : 'העתק פרומפט'}
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── 3.4 Model Comparison ── */
+function ModelComparisonPage({ onNav }) {
+  const [sortKey,    setSortKey]    = useState('bench');
+  const [sortAsc,    setSortAsc]    = useState(false);
+  const [provider,   setProvider]   = useState('הכל');
+
+  const providers = ['הכל', ...Array.from(new Set(MODELS_DATA.map(m => m.provider)))];
+
+  const sorted = [...MODELS_DATA]
+    .filter(m => provider === 'הכל' || m.provider === provider)
+    .sort((a, b) => {
+      const av = a[sortKey], bv = b[sortKey];
+      if (typeof av === 'boolean') return sortAsc ? av - bv : bv - av;
+      if (typeof av === 'string')  return sortAsc ? av.localeCompare(bv,'he') : bv.localeCompare(av,'he');
+      return sortAsc ? av - bv : bv - av;
+    });
+
+  const colClick = (key) => {
+    if (sortKey === key) setSortAsc(a => !a);
+    else { setSortKey(key); setSortAsc(false); }
+  };
+
+  const Th = ({ k, label }) => (
+    <th className={sortKey===k ? 'sorted' : ''} onClick={() => colClick(k)}>
+      <span className="sort-arrow">{sortKey===k ? (sortAsc?'↑':'↓') : '↕'}</span>{label}
+    </th>
+  );
+
+  return (
+    <div className="page active">
+      <div className="tool-page" style={{maxWidth:'1200px'}}>
+        <ToolBreadcrumb onNav={onNav} current="השוואת מודלים" />
+        <h1 className="tool-title">השוואת מודלי AI</h1>
+        <p className="tool-subtitle">לחצו על כותרת עמודה למיון. סננו לפי ספק.</p>
+
+        <div className="model-filters">
+          <span className="model-filter-label">ספק:</span>
+          {providers.map(p => (
+            <button key={p} className={`cat-btn${provider===p?' active':''}`} onClick={() => setProvider(p)}>{p}</button>
+          ))}
+        </div>
+
+        <div className="model-table-wrap">
+          <table className="model-table">
+            <thead>
+              <tr>
+                <Th k="name"        label="מודל" />
+                <Th k="provider"    label="ספק" />
+                <Th k="context"     label="חלון הקשר" />
+                <Th k="inputPer1M"  label="קלט $/1M" />
+                <Th k="outputPer1M" label="פלט $/1M" />
+                <Th k="multimodal"  label="מולטימודל" />
+                <Th k="cutoff"      label="Knowledge cutoff" />
+                <Th k="bench"       label="Benchmark %" />
+                <Th k="api"         label="API" />
+              </tr>
+            </thead>
+            <tbody>
+              {sorted.map((m,i) => (
+                <tr key={i}>
+                  <td className="model-name">{m.name}</td>
+                  <td><span className="model-provider" style={{color:'var(--accent)'}}>{m.provider}</span></td>
+                  <td style={{direction:'ltr',textAlign:'left'}}>{m.context}</td>
+                  <td style={{direction:'ltr',textAlign:'left'}}>${m.inputPer1M}</td>
+                  <td style={{direction:'ltr',textAlign:'left'}}>${m.outputPer1M}</td>
+                  <td><span className={`badge ${m.multimodal?'badge-yes':'badge-no'}`}>{m.multimodal?'✓ כן':'—'}</span></td>
+                  <td style={{fontSize:'12px',color:'var(--ink-3)'}}>{m.cutoff}</td>
+                  <td style={{fontWeight:700,color:'var(--accent)',direction:'ltr',textAlign:'left'}}>{m.bench}%</td>
+                  <td><span className={`badge ${m.api?'badge-yes':'badge-no'}`}>{m.api?'✓':'—'}</span></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p style={{fontSize:'12px',color:'var(--ink-4)',marginTop:'12px'}}>* מחירים ו-benchmarks נכונים לתאריך פרסום. ייתכנו שינויים.</p>
+      </div>
     </div>
   );
 }
@@ -1711,33 +2212,53 @@ function GuidesPage({ onArticle }) {
   );
 }
 
-function ToolsPage() {
-  const tools = [
-    { name: 'ChatGPT', desc: 'מודל שפה של OpenAI, מוביל השוק', tag: 'FREE+PRO', img: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=300&q=70' },
-    { name: 'Claude', desc: 'מודל הדגל של Anthropic לחשיבה מתקדמת', tag: 'FREE+PRO', img: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=300&q=70' },
-    { name: 'Gemini', desc: 'מודל האמולטיממודל החדש של Google', tag: 'FREE+PRO', img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=300&q=70' },
-    { name: 'Cursor', desc: 'עורך קוד עם AI מובנה — vibe coding', tag: 'FREE+PRO', img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=300&q=70' },
-    { name: 'Midjourney', desc: 'מחולל תמונות AI מהמובילים בעולם', tag: 'PRO', img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=300&q=70' },
-    { name: 'Perplexity', desc: 'מנוע חיפוש AI שמציין מקורות', tag: 'FREE+PRO', img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=300&q=70' },
+function ToolsPage({ onNav }) {
+  const interactiveTools = [
+    { id: 'tool-token',   icon: '🔢', name: 'סופר טוקנים',       desc: 'ספור טוקנים בעברית ואנגלית, הצג עלות לפי מודל בזמן אמת' },
+    { id: 'tool-cost',    icon: '💰', name: 'מחשבון עלויות',      desc: 'השווה עלויות יומיות/חודשיות/שנתיות בין מודלי ה-AI המובילים' },
+    { id: 'tool-prompts', icon: '📋', name: 'ספריית פרומפטים',    desc: '34 פרומפטים מוכנים בעברית — חיפוש, פילטר, העתקה בלחיצה' },
+    { id: 'tool-models',  icon: '⚡', name: 'השוואת מודלים',       desc: 'טבלה אינטראקטיבית: context, מחיר, benchmarks — מיון וסינון' },
+  ];
+  const externalTools = [
+    { name: 'ChatGPT',    desc: 'מודל שפה של OpenAI, מוביל השוק',               tag: 'FREE+PRO', img: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=300&q=70' },
+    { name: 'Claude',     desc: 'מודל הדגל של Anthropic לחשיבה מתקדמת',          tag: 'FREE+PRO', img: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=300&q=70' },
+    { name: 'Gemini',     desc: 'המודל המולטימודלי החדש של Google',              tag: 'FREE+PRO', img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=300&q=70' },
+    { name: 'Cursor',     desc: 'עורך קוד עם AI מובנה — vibe coding',           tag: 'FREE+PRO', img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=300&q=70' },
+    { name: 'Midjourney', desc: 'מחולל תמונות AI מהמובילים בעולם',              tag: 'PRO',      img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=300&q=70' },
+    { name: 'Perplexity', desc: 'מנוע חיפוש AI שמציין מקורות',                  tag: 'FREE+PRO', img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=300&q=70' },
   ];
   return (
     <div className="page active">
-      <div className="main-content" style={{gridTemplateColumns:'1fr',paddingTop:'32px'}}>
-        <main>
-          <SectionHeader title="כלי AI מובילים" />
-          <div className="card-grid">
-            {tools.map(t => (
-              <div className="card" key={t.name}>
-                <div className="card-img"><img src={t.img} alt={t.name} /></div>
-                <div className="card-body">
-                  <div className="card-tag">{t.tag}</div>
-                  <h3 className="card-title" style={{fontSize:'20px'}}>{t.name}</h3>
-                  <p className="card-excerpt">{t.desc}</p>
-                </div>
+      <div className="tool-page" style={{maxWidth:'var(--max-w)'}}>
+        <h1 className="tool-title">כלי AI</h1>
+        <p className="tool-subtitle">כלים אינטראקטיביים שבנינו — בחינם, ישירות בדפדפן</p>
+
+        <div className="tool-landing-grid">
+          {interactiveTools.map(t => (
+            <div className="tool-landing-card" key={t.id} onClick={() => onNav(t.id)}
+              role="button" tabIndex={0} onKeyDown={e => e.key==='Enter' && onNav(t.id)}
+              aria-label={`פתח כלי: ${t.name}`}>
+              <div className="tool-landing-icon">{t.icon}</div>
+              <div className="tool-landing-name">{t.name}</div>
+              <div className="tool-landing-desc">{t.desc}</div>
+              <div className="tool-landing-arrow">פתח כלי ←</div>
+            </div>
+          ))}
+        </div>
+
+        <SectionHeader title="כלי AI חיצוניים מומלצים" />
+        <div className="card-grid" style={{marginTop:'20px'}}>
+          {externalTools.map(t => (
+            <div className="card" key={t.name}>
+              <div className="card-img"><img src={t.img} alt={t.name} /></div>
+              <div className="card-body">
+                <div className="card-tag">{t.tag}</div>
+                <h3 className="card-title" style={{fontSize:'20px'}}>{t.name}</h3>
+                <p className="card-excerpt">{t.desc}</p>
               </div>
-            ))}
-          </div>
-        </main>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -1910,13 +2431,17 @@ function App() {
         setSearchQuery={handleSearch}
         savedCount={saved.length}
       />
-      {page === 'home'    && <HomePage onArticle={handleArticle} searchQuery={searchQuery} />}
-      {page === 'article' && article && <ArticlePage article={article} onBack={() => handleNav('home')} onArticle={handleArticle} isSaved={isSaved} toggleSaved={toggleSaved} />}
-      {page === 'news'    && <NewsPage onArticle={handleArticle} />}
-      {page === 'guides'  && <GuidesPage onArticle={handleArticle} />}
-      {page === 'tools'   && <ToolsPage />}
-      {page === 'about'   && <AboutPage />}
-      {page === 'saved'   && <SavedPage saved={saved} onArticle={handleArticle} onNav={handleNav} />}
+      {page === 'home'         && <HomePage onArticle={handleArticle} searchQuery={searchQuery} />}
+      {page === 'article'      && article && <ArticlePage article={article} onBack={() => handleNav('home')} onArticle={handleArticle} isSaved={isSaved} toggleSaved={toggleSaved} />}
+      {page === 'news'         && <NewsPage onArticle={handleArticle} />}
+      {page === 'guides'       && <GuidesPage onArticle={handleArticle} />}
+      {page === 'tools'        && <ToolsPage onNav={handleNav} />}
+      {page === 'tool-token'   && <TokenCounterPage   onNav={handleNav} />}
+      {page === 'tool-cost'    && <CostCalculatorPage onNav={handleNav} />}
+      {page === 'tool-prompts' && <PromptLibraryPage  onNav={handleNav} />}
+      {page === 'tool-models'  && <ModelComparisonPage onNav={handleNav} />}
+      {page === 'about'        && <AboutPage />}
+      {page === 'saved'        && <SavedPage saved={saved} onArticle={handleArticle} onNav={handleNav} />}
       <SiteFooter onNav={handleNav} />
       <BackToTop />
       <TweaksUI tweaks={tweaks} setTweak={setTweak} />
