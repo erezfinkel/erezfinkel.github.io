@@ -1064,6 +1064,56 @@
   }
   .stat-label { font-size: 14px; color: var(--ink-3); font-weight: 600; }
 
+  /* ─── GLOSSARY PAGE ─── */
+  .glossary-letter-nav { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 28px; }
+  .letter-btn { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border: 1.5px solid var(--border); background: var(--bg-card); color: var(--ink-2); font-size: 15px; font-weight: 700; border-radius: 4px; cursor: pointer; transition: all 0.15s; font-family: var(--font-serif); }
+  .letter-btn:hover, .letter-btn.active { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+  .letter-btn.disabled { opacity: 0.3; cursor: default; pointer-events: none; }
+  .glossary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+  .glossary-term-card { background: var(--bg-card); border: 1px solid var(--border); padding: 20px; border-radius: 4px; transition: border-color 0.2s; }
+  .glossary-term-card:hover { border-color: var(--border-strong); }
+  .glossary-cat-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .glossary-term { font-family: var(--font-serif); font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+  .glossary-term-en { font-size: 12px; color: var(--ink-4); margin-bottom: 10px; }
+  .glossary-short { font-size: 14px; color: var(--ink-2); line-height: 1.6; margin-bottom: 12px; }
+  .glossary-toggle-btn { font-size: 12px; color: var(--accent); background: none; border: none; cursor: pointer; font-family: var(--font-ui); font-weight: 700; padding: 0; }
+  .glossary-full { font-size: 13.5px; color: var(--ink-2); line-height: 1.7; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+
+  /* ─── WEEKLY PAGE ─── */
+  .weekly-issue-list { display: flex; flex-direction: column; gap: 20px; }
+  .weekly-issue-card { background: var(--bg-card); border: 1px solid var(--border); padding: 24px; border-radius: 4px; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s; }
+  .weekly-issue-card:hover { border-color: var(--accent); box-shadow: 0 4px 20px oklch(0% 0 0 / 0.08); }
+  .weekly-issue-meta { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 8px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .weekly-issue-title { font-family: var(--font-serif); font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+  .weekly-issue-summary { font-size: 14px; color: var(--ink-3); line-height: 1.6; margin-bottom: 14px; }
+  .weekly-issue-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .weekly-item-list { display: flex; flex-direction: column; gap: 0; }
+  .weekly-item { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+  .weekly-item:last-child { border-bottom: none; }
+  .weekly-item-type { flex-shrink: 0; padding: 3px 10px; border-radius: 10px; font-size: 11px; font-weight: 700; background: var(--bg-alt); color: var(--ink-3); border: 1px solid var(--border); white-space: nowrap; height: fit-content; margin-top: 3px; }
+  .weekly-item-type.hot { background: oklch(95% 0.05 25); color: var(--accent); border-color: oklch(88% 0.08 25); }
+  .weekly-item-title { font-weight: 700; color: var(--ink); margin-bottom: 4px; font-size: 15px; }
+  .weekly-item-desc { font-size: 13.5px; color: var(--ink-3); line-height: 1.6; }
+
+  /* ─── ABOUT EXTENDED ─── */
+  .about-section { max-width: 860px; margin: 0 auto; padding: 0 24px 48px; }
+  .about-section-title { font-family: var(--font-serif); font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--accent); }
+  .expertise-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-bottom: 40px; }
+  .expertise-card { background: var(--bg-card); border: 1px solid var(--border); padding: 18px; border-radius: 4px; }
+  .expertise-icon { font-size: 28px; margin-bottom: 10px; }
+  .expertise-name { font-weight: 700; color: var(--ink); margin-bottom: 6px; font-size: 15px; }
+  .expertise-desc { font-size: 13px; color: var(--ink-3); line-height: 1.55; }
+  .pub-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+  .pub-item { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .pub-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .pub-year { font-size: 12px; font-weight: 700; color: var(--accent); width: 40px; flex-shrink: 0; padding-top: 2px; }
+  .pub-title { font-weight: 700; color: var(--ink); margin-bottom: 3px; font-size: 14px; }
+  .pub-where { font-size: 13px; color: var(--ink-3); }
+  .contact-form { display: grid; gap: 14px; max-width: 520px; }
+  .contact-input { background: var(--bg); border: 1.5px solid var(--border); border-radius: 4px; padding: 11px 14px; font-family: var(--font-ui); font-size: 14px; color: var(--ink); outline: none; transition: border-color 0.2s; direction: rtl; text-align: right; width: 100%; }
+  .contact-input:focus { border-color: var(--accent); }
+  textarea.contact-input { min-height: 130px; resize: vertical; }
+
   /* ─── RESPONSIVE ─── */
   @media (max-width: 900px) {
     .hero-grid { grid-template-columns: 1fr; }
@@ -1287,6 +1337,197 @@ const PROMPTS_DATA = [
     prompt:'עזור לי לדחות את הבקשה הבאה בצורה מכובדת: "[הבקשה]"\nהקשר: [מה הקשר שלי עם האדם? מה הסיבה האמיתית לדחייה?]\n\nכתוב מייל שמכיל: הכרה בבקשה ב-specificity, הסבר תמציתי (לא סיפורי כיסוי), הצעת alternative אם קיים, ו-חיזוק הקשר. ללא התנצלות מוגזמת.' },
   { id:34, cat:'פרודוקטיביות', title:'תבנית ישיבה יעילה', desc:'ישיבות שמסתיימות בהחלטות', tags:['ניהול','פרודוקטיביות'],
     prompt:'צור agenda לישיבה על [נושא] עם [מספר] משתתפים שמשך 60 דקות. כלול: מטרה ברורה, חלוקת זמן לפי נושאים (עם buffer), הכנה נדרשת ממשתתפים לפני, כלל decision-making (consensus/vote/DACI), ו-template לסיכום בסוף. הישיבה צריכה להסתיים עם 3 החלטות ו-owners ברורים.' },
+];
+
+// ─── GLOSSARY DATA ───────────────────────────────────────────────────────────
+
+const GLOSSARY_DATA = [
+  { id:'ai',          term:'בינה מלאכותית',         termEn:'Artificial Intelligence (AI)', letter:'ב', cat:'כללי',
+    short:'תחום מדעי המחשב שמטרתו יצירת מכונות שמסוגלות לבצע משימות הדורשות אינטליגנציה אנושית.',
+    full:'בינה מלאכותית (AI) היא ענף של מדעי המחשב העוסק בפיתוח מערכות שמסוגלות לבצע משימות שדרשו עד כה אינטליגנציה אנושית — זיהוי תמונות, הבנת שפה, קבלת החלטות, ולמידה מניסיון. התחום כולל תת-תחומים: למידת מכונה, עיבוד שפה טבעית, ראייה ממוחשבת ורובוטיקה.' },
+  { id:'ml',          term:'למידת מכונה',            termEn:'Machine Learning (ML)', letter:'ל', cat:'כללי',
+    short:'תת-תחום של AI שבו מערכות לומדות מנתונים ללא תכנות מפורש.',
+    full:'במידת מכונה, אלגוריתמים מזהים דפוסים בנתונים ומשפרים את ביצועיהם עם הזמן. בניגוד לתכנות מסורתי שבו הכללים נכתבים ידנית, כאן המודל "לומד" את הכללים מהדוגמאות. שלושת סוגי הלמידה העיקריים: מפוקחת, לא-מפוקחת, וחיזוק.' },
+  { id:'dl',          term:'למידה עמוקה',             termEn:'Deep Learning', letter:'ל', cat:'ארכיטקטורה',
+    short:'תת-תחום של למידת מכונה המשתמש ברשתות נוירונים עמוקות עם שכבות רבות.',
+    full:'למידה עמוקה משתמשת ברשתות נוירונים עם עשרות עד מאות שכבות. הפריצה הדרך הגדולה הגיעה עם ניצול GPU לאימון, שאיפשר לאמן מודלים בסדרי גודל שלא נחשבו אפשריים קודם. כיום היא הבסיס לזיהוי תמונות, עיבוד שפה ומוזיקה סינתטית.' },
+  { id:'nn',          term:'רשת נוירונים',            termEn:'Neural Network', letter:'ר', cat:'ארכיטקטורה',
+    short:'מבנה מחשובי בהשראת המוח האנושי, המורכב מ"נוירונים" מחוברים בשכבות.',
+    full:'רשת נוירונים מלאכותית מורכבת מצמתים (נוירונים) המחוברים ומשוקללים. נתונים זורמים קדימה (forward pass) דרך השכבות, ורדיאנט השגיאה זורם אחורה (backpropagation) לעדכון המשקלות. שכבות Input → Hidden → Output הן המבנה הבסיסי.' },
+  { id:'llm',         term:'מודל שפה גדול',           termEn:'Large Language Model (LLM)', letter:'מ', cat:'מודלים',
+    short:'מודל AI שאומן על כמויות עצומות של טקסט ומסוגל להבין ולייצר שפה אנושית.',
+    full:'LLM הוא רשת נוירונים שאומנה על טריליוני טוקנים של טקסט. דוגמאות: GPT-4, Claude, Gemini. המודלים מסוגלים לתרגם, לסכם, לכתוב קוד, ולנהל שיחות. הם לא "מבינים" באופן אנושי — הם מחשבים הסתברויות לטוקן הבא.' },
+  { id:'token',       term:'טוקן',                    termEn:'Token', letter:'ט', cat:'שימוש',
+    short:'יחידת הטקסט הבסיסית שבה מודלי שפה מעבדים מידע.',
+    full:'טוקן הוא קטע הטקסט הקטן ביותר שמודל שפה מעבד. בעברית, מילה אחת שווה בדרך כלל 1.5–2 טוקנים. בקוד תכנות, כל מילת מפתח או סימן הוא לרוב טוקן. מחיר ה-API מחושב לפי כמות הטוקנים בקלט ובפלט.' },
+  { id:'prompt',      term:'פרומפט',                  termEn:'Prompt', letter:'פ', cat:'שימוש',
+    short:'ההוראה או השאלה שמשתמש כותב למודל AI.',
+    full:'פרומפט הוא הקלט הטקסטואלי שנשלח למודל. הוא יכול לכלול הוראות, הקשר, דוגמאות, או שאלות. איכות הפרומפט משפיעה ישירות על איכות התשובה — תחום העוסק בכך נקרא הנדסת פרומפטים.' },
+  { id:'pe',          term:'הנדסת פרומפטים',          termEn:'Prompt Engineering', letter:'ה', cat:'שימוש',
+    short:'האמנות והמדע של כתיבת הוראות יעילות למודלי AI.',
+    full:'טכניקות מרכזיות: הגדרת תפקיד ("אתה מומחה ל-X"), מתן דוגמאות (few-shot), פירוק לשלבים (chain of thought), וציון פורמט פלט. מחקרים הראו שניסוח שונה של אותה שאלה יכול לשנות דרמטית את איכות התשובה.' },
+  { id:'rag',         term:'RAG',                     termEn:'Retrieval-Augmented Generation', letter:'ר', cat:'ארכיטקטורה',
+    short:'שיטה שמשלבת חיפוש במסמכים חיצוניים עם יצירת טקסט על ידי LLM.',
+    full:'RAG מאפשרת ל-LLM לגשת למידע עדכני שלא היה בסט האימון. כשמגיעה שאלה, המערכת מחפשת מסמכים רלוונטיים, מוסיפה אותם להקשר, ורק אז המודל מייצר תשובה. שיטה זו מפחיתה הזיות ומאפשרת עדכניות.' },
+  { id:'embedding',   term:'אמבדינג',                 termEn:'Embedding', letter:'א', cat:'ארכיטקטורה',
+    short:'ייצוג מספרי של טקסט כוקטור במרחב רב-ממדי, ששומר משמעות סמנטית.',
+    full:'אמבדינג ממיר מילים, משפטים או מסמכים לוקטורים. מילים עם משמעות דומה יהיו קרובות במרחב. "מלך" פחות "גבר" פלוס "אישה" ≈ "מלכה". אמבדינגים הם הבסיס למסדי נתוני וקטורים וחיפוש סמנטי.' },
+  { id:'finetune',    term:'כוונון עדין',             termEn:'Fine-tuning', letter:'כ', cat:'אימון',
+    short:'תהליך המשך האימון של מודל קיים על סט נתונים ספציפי לדומיין.',
+    full:'כוונון עדין מאפשר להתאים מודל כללי לצרכים ספציפיים — לדוגמה, אימון GPT על שיחות שירות לקוחות. התהליך זול הרבה מאימון מאפס ומניב תוצאות טובות לדומיינים ספציפיים.' },
+  { id:'transformer', term:'טרנספורמר',               termEn:'Transformer', letter:'ט', cat:'ארכיטקטורה',
+    short:'ארכיטקטורת רשת נוירונים שהפכה לבסיס של רוב מודלי ה-AI המודרניים.',
+    full:'הוצגה ב-2017 במאמר "Attention is All You Need". מבוססת על מנגנון attention שמאפשר למודל להתמקד בחלקים רלוונטיים של הקלט. כמעט כל מודלי השפה הגדולים — GPT, Claude, Gemini — מבוססים על ארכיטקטורה זו.' },
+  { id:'attention',   term:'מנגנון Attention',        termEn:'Attention Mechanism', letter:'מ', cat:'ארכיטקטורה',
+    short:'שיטה שמאפשרת לרשת נוירונים להתמקד בחלקים רלוונטיים של הקלט.',
+    full:'Attention מאפשר לכל טוקן "להסתכל" על כל הטוקנים האחרים ולהחליט כמה כל אחד רלוונטי עבורו. Self-attention היא הלב של ארכיטקטורת הטרנספורמר ומה שמאפשר הבנת הקשר ארוך.' },
+  { id:'ctx',         term:'חלון הקשר',               termEn:'Context Window', letter:'ח', cat:'שימוש',
+    short:'הכמות המקסימלית של טקסט שמודל AI יכול לעבד בו-זמנית.',
+    full:'נמדד בטוקנים. מודל עם 128K context window יכול לעבד כ-100K מילים באנגלית. שיחות ארוכות ומסמכים גדולים דורשים חלונות גדולים. גודל החלון משפיע גם על מחיר הבקשה.' },
+  { id:'temp',        term:'טמפרטורה',                termEn:'Temperature', letter:'ט', cat:'שימוש',
+    short:'פרמטר ששולט בדרגת האקראיות והיצירתיות בתשובות המודל.',
+    full:'ערך בין 0 ל-2. ערך נמוך (0.1–0.3): תשובות עקביות ודטרמיניסטיות — טוב לקוד ועובדות. ערך גבוה (0.8–1.2): יצירתיות ומגוון — טוב לכתיבה יצירתית. טמפרטורה 0 מניבה תמיד את הטוקן הסביר ביותר.' },
+  { id:'hallucination', term:'הזיה',                  termEn:'Hallucination', letter:'ה', cat:'בטיחות',
+    short:'כשמודל AI יוצר מידע שגוי ומציגו בביטחון כעובדה.',
+    full:'הזיה מתרחשת כשמודל מייצר שמות מומחים שלא קיימים, ציטוטים מפוברקים, או תאריכים שגויים. הבעיה נובעת מכך שהמודל לומד לייצר טקסט שנשמע סביר, לא בהכרח נכון. RAG ו-grounding הם שיטות להפחתת הזיות.' },
+  { id:'agent',       term:'סוכן AI',                 termEn:'AI Agent', letter:'ס', cat:'שימוש',
+    short:'מערכת AI שמסוגלת לתכנן ולבצע פעולות מורכבות באופן אוטונומי.',
+    full:'סוכן AI משתמש ב-LLM כ"מוח" ומשלב אותו עם כלים (חיפוש, קוד, API) וזיכרון. הסוכן מתכנן שלבים, מבצע פעולות, מעריך תוצאות ומשנה תוכנית. Claude Computer Use, GPT-4o עם browsing, ו-Devin הם דוגמאות.' },
+  { id:'multimodal',  term:'מולטימודל',               termEn:'Multimodal', letter:'מ', cat:'מודלים',
+    short:'מודל AI שמסוגל לעבד ולייצר סוגים שונים של מדיה: טקסט, תמונות, אודיו, וידאו.',
+    full:'GPT-4o, Gemini Ultra ו-Claude Sonnet מסוגלים לקרוא תמונות, לנתח גרפים, ולהבין קוד מסקרינשוטים. המגמה הגדולה היא מודלים שגם מייצרים וידאו ואודיו ופועלים על מגוון ערוצי קלט.' },
+  { id:'rlhf',        term:'RLHF',                    termEn:'Reinforcement Learning from Human Feedback', letter:'ר', cat:'אימון',
+    short:'שיטת אימון שמשתמשת בפידבק אנושי לשיפור התנהגות המודל.',
+    full:'אנשים מדרגים תשובות שונות, ומודל "מדרג" לומד מהן. לאחר מכן, המודל הראשי מאומן להגדיל את ציון המדרג. זו הסיבה שמודלים מודרניים "מנומסים" ועוקבים אחרי הוראות. GPT-3.5 ו-Claude 1 אומנו כך.' },
+  { id:'cai',         term:'Constitutional AI',       termEn:'Constitutional AI', letter:'ק', cat:'בטיחות',
+    short:'גישת Anthropic לאימון מודלים בטוחים על בסיס עקרונות כתובים.',
+    full:'במקום להסתמך רק על פידבק אנושי, המודל מאומן על פי "חוקה" — רשימת עקרונות. המודל מעריך את תשובותיו מול העקרונות ומשפר אותן. זה מקטין הצורך בפידבק אנושי ומשפר עקביות.' },
+  { id:'cot',         term:'שרשרת מחשבה',             termEn:'Chain of Thought (CoT)', letter:'ש', cat:'שימוש',
+    short:'טכניקה שמבקשת מהמודל לחשוב בשלבים לפני מתן תשובה.',
+    full:'CoT שיפרה דרמטית ביצועים במשימות לוגיקה ומתמטיקה. במקום תשובה ישירה, מבקשים "חשוב שלב אחר שלב". OpenAI o1/o3 ו-Claude 3 Opus מבצעים CoT פנימי לפני כל תשובה.' },
+  { id:'fewshot',     term:'למידה עם מעט דוגמאות',   termEn:'Few-shot Learning', letter:'ל', cat:'שימוש',
+    short:'יכולת המודל ללמוד משימה חדשה מ-2–5 דוגמאות בלבד בפרומפט.',
+    full:'על ידי הצגת דוגמאות בפרומפט, המודל "מבין" את הדפוס ומכליל. לדוגמה: "ענבים → יין, תפוחים → ?" — המודל יענה "מיץ תפוחים". מאפשר ביצוע משימות ללא אימון מיוחד.' },
+  { id:'zeroshot',    term:'למידה ללא דוגמאות',       termEn:'Zero-shot Learning', letter:'ל', cat:'שימוש',
+    short:'יכולת המודל לבצע משימה שלא ראה דוגמאות ממנה, רק על בסיס הגדרה.',
+    full:'Zero-shot: לבקש תרגום ללא דוגמאות — "תרגם לצרפתית: שלום עולם". LLMs גדולים מצטיינים ב-zero-shot בזכות הידע הרחב שרכשו באימון על טריליוני טוקנים.' },
+  { id:'genai',       term:'AI גנרטיבי',              termEn:'Generative AI', letter:'א', cat:'כללי',
+    short:'AI שמסוגל לייצר תוכן חדש: טקסט, תמונות, קוד, מוזיקה.',
+    full:'AI גנרטיבי שונה מ-AI קלאסי שמסווג או חוזה — הוא יוצר תוכן מקורי. ChatGPT יוצר טקסט, DALL-E תמונות, Suno מוזיקה. הבסיס הטכנולוגי כולל מודלי diffusion, מודלי שפה, ו-GANs.' },
+  { id:'diffusion',   term:'מודל דיפוזיה',            termEn:'Diffusion Model', letter:'מ', cat:'ארכיטקטורה',
+    short:'סוג מודל גנרטיבי שיוצר תמונות ריאליסטיות מרעש הדרגתי.',
+    full:'מודלי דיפוזיה לומדים לבצע תהליך הפוך: הוספת רעש הדרגתית לתמונות, ולמדים לנקות אותו. Stable Diffusion, DALL-E 3 ו-Midjourney מבוססים על עיקרון זה. הפכו יצירת תמונות AI לנגישה לכולם.' },
+  { id:'vector',      term:'וקטור',                   termEn:'Vector', letter:'ו', cat:'ארכיטקטורה',
+    short:'רשימה מסודרת של מספרים המייצגת נקודה במרחב רב-ממדי.',
+    full:'וקטורים הם הבסיס המתמטי של AI מודרני. טקסט, תמונות וסאונד מומרים לוקטורים. דמיון בין מושגים מיוצג כקרבה בין הוקטורים. LLMs עובדים במרחבים עם אלפי עד עשרות אלפי ממדים.' },
+  { id:'vectordb',    term:'מסד נתוני וקטורים',       termEn:'Vector Database', letter:'מ', cat:'כלים',
+    short:'מסד נתונים מיוחד לאחסון וחיפוש יעיל של וקטורים.',
+    full:'מסדי נתוני וקטורים (Pinecone, Weaviate, Chroma) מאפשרים חיפוש סמנטי — מציאת המסמכים הדומים ביותר לשאלה על בסיס משמעות ולא מילות מפתח. הם הרכיב המרכזי במערכות RAG.' },
+  { id:'inference',   term:'הסקה',                    termEn:'Inference', letter:'ה', cat:'אימון',
+    short:'השלב שבו המודל המאומן מייצר תשובות לקלטים חדשים.',
+    full:'Inference הוא שלב השימוש במודל לאחר שהאימון הסתיים. בניגוד לאימון שאורך שבועות, inference הוא מהיר. עלות ה-inference נמדדת לפי טוקנים ומשקפת את תמחור ה-API.' },
+  { id:'params',      term:'פרמטרים',                 termEn:'Parameters', letter:'פ', cat:'מודלים',
+    short:'המשקלות הפנימיות של רשת נוירונים, שמאוחסנות אחרי האימון.',
+    full:'GPT-4 מוערך ב-1.8 טריליון פרמטרים, Claude Opus ב-~2 טריליון. יותר פרמטרים שווה יכולות טובות יותר בדרך כלל, אך גם עלות אחסון והרצה גבוהה יותר.' },
+  { id:'opensource',  term:'קוד פתוח',                termEn:'Open Source AI', letter:'ק', cat:'מודלים',
+    short:'מודלי AI שמשחררים את המשקלות לציבור, ומאפשרים הורדה והרצה מקומית.',
+    full:'Llama של Meta, Mistral, ו-Falcon מאפשרים לכל אחד להוריד ולהריץ מקומית. יתרונות: פרטיות, עלות אפס, התאמה אישית. חיסרון: לרוב פחות חזקים ממודלים קנייניים.' },
+  { id:'grounding',   term:'עיגון',                   termEn:'Grounding', letter:'ע', cat:'שימוש',
+    short:'חיבור תשובות המודל למקורות עובדתיים וניתנים לאימות.',
+    full:'עיגון מגן מפני הזיות על ידי חיבור תשובות AI לנתונים אמיתיים — חיפוש אינטרנט, מסמכים פנימיים, או מסדי נתונים. Google Search Grounding ב-Gemini ו-Web Search ב-Claude הם דוגמאות.' },
+  { id:'tooluse',     term:'שימוש בכלים',             termEn:'Tool Use / Function Calling', letter:'ש', cat:'שימוש',
+    short:'יכולת המודל לקרוא לפונקציות חיצוניות כדי לבצע פעולות אמיתיות.',
+    full:'Function calling מאפשר ל-LLM לצאת מגבולות הטקסט: חיפוש ברשת, הרצת קוד, שליחת מייל, קריאת קבצים. המודל מחליט מתי לקרוא לאיזה כלי ומעבד התוצאות. זה הבסיס לסוכני AI.' },
+  { id:'sysprompt',   term:'פרומפט מערכת',            termEn:'System Prompt', letter:'פ', cat:'שימוש',
+    short:'הוראות שניתנות למודל לפני תחילת שיחה, שמגדירות הקשר והתנהגות.',
+    full:'System prompt מאפשר להגדיר "אישיות" ומגבלות לפני השיחה. חברות שמשלבות AI במוצריהן משתמשות בו להגדרת טון, הגבלת תחומים, ואחריות. לרוב אינו גלוי למשתמש הקצה.' },
+  { id:'cutoff',      term:'חתך ידע',                 termEn:'Knowledge Cutoff', letter:'ח', cat:'מודלים',
+    short:'התאריך שאחריו אין למודל ידע על אירועים בעולם.',
+    full:'GPT-4 חתוך באפריל 2024, Claude Sonnet 4.6 במאי 2025. אירועים שהתרחשו אחרי חתך הידע אינם ידועים למודל ללא עיגון חיצוני. זו הסיבה שמודלים יכולים לתת מידע מיושן.' },
+  { id:'alignment',   term:'יישור',                   termEn:'AI Alignment', letter:'י', cat:'בטיחות',
+    short:'תחום מחקרי שמטרתו הבטחת פעולת מערכות AI בהתאם לערכים אנושיים.',
+    full:'Alignment עוסק ב: בטיחות טכנית (המודל לא יפגע), שקיפות (הסבר החלטות), ויושר (לא לרמות). Anthropic, DeepMind ו-OpenAI משקיעים רבות בנושא זה.' },
+  { id:'safety',      term:'בטיחות AI',               termEn:'AI Safety', letter:'ב', cat:'בטיחות',
+    short:'תחום שעוסק בהבטחת פעולה בטוחה ואמינה של מערכות AI.',
+    full:'בטיחות AI כוללת מניעת שימוש לרעה (deepfakes, סייבר), הגנה מפני הזיות, ומניעת סיכונים. לטווח ארוך: הבטחה שמערכות AI עתידיות לא יפגעו באנשים. זו אחת הסיבות ל"בלמים" שמגיעים עם כל מודל.' },
+  { id:'quantize',    term:'קוונטיזציה',              termEn:'Quantization', letter:'ק', cat:'אימון',
+    short:'טכניקה שמקטינה גודל מודל על ידי הפחתת דיוק המספרים.',
+    full:'ממירה משקלות מ-32-bit ל-8-bit או 4-bit. מקטינה גודל קובץ בפקטור 4–8x ומאפשרת הרצת מודלים גדולים על חומרה צנועה. Ollama ו-llama.cpp הם כלים שמשתמשים בקוונטיזציה.' },
+  { id:'lora',        term:'LoRA',                    termEn:'Low-Rank Adaptation', letter:'ל', cat:'אימון',
+    short:'שיטת fine-tuning יעילה שמאמנת רק חלק קטן מהפרמטרים.',
+    full:'LoRA מאפשרת fine-tuning על GPU ביתי. במקום לאמן כל המיליארדי פרמטרים, מוסיפה מטריצות קטנות ומאמנת רק אותן. עלות: עשרות דולרים במקום אלפים. פופולרי מאוד בקהילת Stable Diffusion.' },
+  { id:'mcp',         term:'MCP',                     termEn:'Model Context Protocol', letter:'מ', cat:'כלים',
+    short:'פרוטוקול פתוח של Anthropic לחיבור מודלי AI לכלים ומקורות נתונים חיצוניים.',
+    full:'MCP שוחרר על ידי Anthropic כסטנדרט פתוח. מאפשר לבנות "שרתי MCP" שמספקים יכולות לסוכנים — מסדי נתונים, APIs, כלי פיתוח. Claude Desktop תומך ב-MCP out of the box.' },
+  { id:'tts',         term:'טקסט-לדיבור',             termEn:'Text-to-Speech (TTS)', letter:'ט', cat:'מודלים',
+    short:'טכנולוגיה שממירה טקסט לאודיו בקול סינתטי ריאליסטי.',
+    full:'מודלי TTS מודרניים כמו ElevenLabs, OpenAI TTS ו-Google WaveNet מייצרים קול שכמעט לא ניתן להבדיל מבני אדם. שימושים: עוזרי קול, תוכן אודיו, נגישות, ו-dubbing אוטומטי.' },
+  { id:'stt',         term:'דיבור-לטקסט',             termEn:'Speech-to-Text (STT)', letter:'ד', cat:'מודלים',
+    short:'טכנולוגיה שממירה אודיו לטקסט.',
+    full:'Whisper של OpenAI מסוגל לתמלל בדיוק גבוה בעשרות שפות כולל עברית. הוא קוד פתוח ואפשר להריץ מקומית. שימושים: תמלול ישיבות, כתיסוביות, ו-voice interface לסוכני AI.' },
+  { id:'moe',         term:'תערובת מומחים',           termEn:'Mixture of Experts (MoE)', letter:'ת', cat:'ארכיטקטורה',
+    short:'ארכיטקטורה שמפעילה רק חלק מהרשת לכל קלט, מה שמגדיל יעילות.',
+    full:'MoE מאפשרת לבנות מודלים עם הרבה פרמטרים ולפעיל רק חלק לכל טוקן. Mistral 8x7B הוא MoE עם 8 "מומחים", מפעיל 2 בו-זמנית. מאפשר מודל גדול בעלות inference נמוכה.' },
+  { id:'gan',         term:'GAN',                     termEn:'Generative Adversarial Network', letter:'ג', cat:'ארכיטקטורה',
+    short:'ארכיטקטורה שמשתמשת בשני מודלים שמתחרים זה בזה ליצירת תוכן ריאליסטי.',
+    full:'GAN מורכב ממחולל (Generator) שמנסה ליצור תמונות ריאליסטיות, ומפלה (Discriminator) שמנסה להבדיל אמיתי ממזויף. התחרות מובילה לשיפור מתמיד. GANs הובילו את מהפכת ה-deepfake.' },
+];
+
+// ─── WEEKLY DATA ─────────────────────────────────────────────────────────────
+
+const WEEKLY_DATA = [
+  {
+    id: 'w18', issue: 18, date: '02/05/2026',
+    title: 'השבוע ב-AI: הפנטגון ו-AI, o3 לכולם, ו-Claude Opus 4.7',
+    summary: 'שבוע סוער: משרד ההגנה האמריקאי חתם על עסקאות AI ענקיות, OpenAI פתחה גישה ל-o3, ו-Anthropic עדכנה את Opus.',
+    items: [
+      { type: 'חדשות', title: 'הפנטגון חתם על עסקאות AI עם 7 ענקיות', desc: 'Microsoft, Google, OpenAI ועוד — הסכמים לפריסת AI ברשתות מסווגות. Anthropic נעדרת.', hot: true },
+      { type: 'שחרור', title: 'o3 עכשיו זמין לכולם', desc: 'OpenAI פתחה גישה ל-o3 ללא צורך ב-ChatGPT Pro — המודל החזק ביותר שלה נגיש לכולם.', hot: true },
+      { type: 'עדכון', title: 'Claude Opus 4.7 עם יכולות coding משופרות', desc: 'Anthropic שחררה Opus 4.7 עם שיפורים בכתיבת קוד ובניית סוכנים.' },
+      { type: 'מחקר', title: 'דו"ח MIT: AI מגדיל פריון ב-40% בממוצע', desc: 'מחקר שכלל 1,000 עובדי ידע הראה קפיצת פריון ממוצעת של 40% עם שימוש ב-AI.' },
+      { type: 'כלי',  title: 'Cursor 1.0 יצא עם Agent Mode מלא', desc: 'עורך הקוד AI הפופולרי השיק גרסה 1.0 עם agent mode ותמיכה ב-MCP.' },
+    ],
+    tags: ['OpenAI', 'Anthropic', 'ממשל', 'כלים']
+  },
+  {
+    id: 'w17', issue: 17, date: '25/04/2026',
+    title: 'השבוע ב-AI: Google Cloud Next, גוגל תשקיע 40B$ ב-Anthropic',
+    summary: 'כנס Google Cloud Next 2026 שלט בכותרות. גוגל הכריזה על Gemini 2.5 Ultra ועל השקעה ענקית ב-Anthropic.',
+    items: [
+      { type: 'אירוע',   title: 'Google Cloud Next 2026', desc: 'גוגל הציגה Gemini 2.5 Ultra, Agent Space, ו-NotebookLM Plus לארגונים.', hot: true },
+      { type: 'השקעה',   title: 'גוגל תשקיע 40B$ ב-Anthropic', desc: 'הנפח הגדול ביותר בהיסטוריה של תעשיית ה-AI: גוגל מכפילה את ההשקעה ב-Anthropic.', hot: true },
+      { type: 'מחקר',   title: 'Claude Mythos Preview — ציד חולשות אבטחה', desc: 'Anthropic מציגה מודל מיוחד לאיתור חולשות שמוצא מה שאנשים פספסו שנים.' },
+      { type: 'כלי',    title: 'Windsurf מרחיב ל-mobile', desc: 'עורך הקוד AI Windsurf השיק אפליקציית מובייל לCode review בדרכים.' },
+      { type: 'רגולציה', title: 'EU AI Act Implementation: פרטים טכניים', desc: 'האיחוד האירופי פרסם draft לאיך חברות צריכות לעמוד ב-AI Act שנכנס ב-2027.' },
+    ],
+    tags: ['Google', 'Gemini', 'Anthropic', 'רגולציה']
+  },
+  {
+    id: 'w16', issue: 16, date: '18/04/2026',
+    title: 'השבוע ב-AI: GPT-5.5, Vibe Coding עולה, ורובוטים עצמאיים',
+    summary: 'OpenAI שחרר GPT-5.5 עם task completion מלא. Vibe Coding נהפך לזרם מרכזי. Figure AI הציג רובוטים שעובדים ללא פיקוח.',
+    items: [
+      { type: 'שחרור', title: 'GPT-5.5: End-to-End Task Completion', desc: 'OpenAI מציגה GPT-5.5 שמסוגל לנהל משימות מורכבות מתחילה עד סוף ללא פיקוח.', hot: true },
+      { type: 'מגמה',  title: 'Vibe Coding: 40% מהקוד ב-GitHub נכתב עם AI', desc: 'נתוני GitHub Copilot מראים שכבר 40% מהקוד הנכתב ב-GitHub הוא AI-assisted.' },
+      { type: 'חדשות', title: 'Figure AI: רובוט שעובד 8 שעות ללא פיקוח', desc: 'Figure הדגים רובוט BMW שמבצע סריאה שלמה ללא נוכחות אנושית.' },
+      { type: 'מחקר',  title: 'Meta: Llama 4 מגיע ברבעון ג׳', desc: 'Zuckerberg אישר ש-Llama 4 יגיע ב-Q3 2026 עם 2T פרמטרים.' },
+      { type: 'ישראל', title: '200 סטארטאפי AI חדשים בישראל ב-2025', desc: 'דו"ח IVC: ישראל הפכה למרכז AI גלובלי עם 200 סטארטאפים חדשים בשנה.' },
+    ],
+    tags: ['GPT', 'OpenAI', 'Vibe Coding', 'ישראל']
+  },
+  {
+    id: 'w15', issue: 15, date: '11/04/2026',
+    title: 'השבוע ב-AI: Gemini 2.5 Flash, Claude Memory, AI ובריאות',
+    summary: 'גוגל משחררת Flash מהיר ורזה. Anthropic מציגה Memory ב-Claude.ai. FDA מאשרת 5 כלי AI לאבחון סרטן.',
+    items: [
+      { type: 'שחרור', title: 'Gemini 2.5 Flash — מהר פי 3 ב-10% מהמחיר', desc: 'Google שחררה Flash עם 1M context ומחיר של $0.075/1M טוקני קלט.', hot: true },
+      { type: 'עדכון', title: 'Claude.ai Memory — Claude זוכר את ההעדפות שלכם', desc: 'Anthropic השיקה Projects עם "Memory" — Claude שומר הקשר בין שיחות.' },
+      { type: 'רפואה', title: 'FDA אישרה 5 כלי AI לאבחון סרטן', desc: 'מהלך יוצא דופן: ה-FDA אישרה 5 כלי AI לאבחון סרטן שד בו-זמנית.' },
+      { type: 'כלי',   title: 'Perplexity Comet: דפדפן AI-first', desc: 'Perplexity השיקה Comet, דפדפן שבו AI הוא שורת הכתובת.' },
+      { type: 'חינוך', title: 'Khan Academy: מיליון תלמידים עם Khanmigo', desc: '1M תלמידים כבר משתמשים ב-AI tutor של Khan Academy.' },
+    ],
+    tags: ['Google', 'Gemini', 'Anthropic', 'בריאות', 'חינוך']
+  },
 ];
 
 // ─── ICONS ──────────────────────────────────────────────────────────────────
@@ -1656,6 +1897,167 @@ function ModelComparisonPage({ onNav }) {
   );
 }
 
+// ─── GLOSSARY PAGE ───────────────────────────────────────────────────────────
+
+function GlossaryTermCard({ term }) {
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <div className="glossary-term-card">
+      <div className="glossary-cat-tag">{term.cat}</div>
+      <div className="glossary-term">{term.term}</div>
+      <div className="glossary-term-en">{term.termEn}</div>
+      <div className="glossary-short">{term.short}</div>
+      <button className="glossary-toggle-btn" onClick={() => setExpanded(e => !e)}>
+        {expanded ? '▲ פחות' : '▼ קרא עוד'}
+      </button>
+      {expanded && <div className="glossary-full">{term.full}</div>}
+    </div>
+  );
+}
+
+function GlossaryPage({ onNav }) {
+  const [query,  setQuery]  = useState('');
+  const [letter, setLetter] = useState('הכל');
+
+  const letters = ['הכל', ...Array.from(new Set(GLOSSARY_DATA.map(t => t.letter))).sort((a,b) => a.localeCompare(b,'he'))];
+
+  const filtered = GLOSSARY_DATA.filter(t => {
+    const matchLetter = letter === 'הכל' || t.letter === letter;
+    const q = query.toLowerCase();
+    const matchText = !query || t.term.includes(query) || t.termEn.toLowerCase().includes(q) || t.short.includes(query);
+    return matchLetter && matchText;
+  }).sort((a,b) => a.term.localeCompare(b.term, 'he'));
+
+  return (
+    <div className="page active">
+      <div className="tool-page" style={{maxWidth:'var(--max-w)'}}>
+        <div className="tool-breadcrumb">
+          <a href="#" onClick={e=>{e.preventDefault();onNav('home');}}>← ראשי</a>
+          <span>/</span><span>מילון מונחים</span>
+        </div>
+        <h1 className="tool-title">מילון מונחי AI בעברית</h1>
+        <p className="tool-subtitle">{GLOSSARY_DATA.length} מונחים מרכזיים — מ-Attention ועד Zero-shot, בהסבר בעברית</p>
+
+        <input
+          className="prompt-search-input"
+          type="text"
+          placeholder="חיפוש מונח..."
+          value={query}
+          onChange={e => { setQuery(e.target.value); setLetter('הכל'); }}
+          style={{marginBottom:'20px', maxWidth:'400px', display:'block'}}
+          aria-label="חיפוש במילון"
+        />
+
+        <div className="glossary-letter-nav" role="navigation" aria-label="סינון לפי אות">
+          {letters.map(l => (
+            <button
+              key={l}
+              className={`letter-btn${letter===l?' active':''}`}
+              onClick={() => { setLetter(l); setQuery(''); }}
+              aria-pressed={letter===l}
+            >{l}</button>
+          ))}
+        </div>
+
+        <p style={{fontSize:'13px',color:'var(--ink-4)',marginBottom:'20px'}}>
+          {filtered.length} מונחים מוצגים
+        </p>
+
+        {filtered.length === 0 && (
+          <p style={{color:'var(--ink-3)',textAlign:'center',padding:'40px 0'}}>לא נמצאו מונחים תואמים.</p>
+        )}
+        <div className="glossary-grid">
+          {filtered.map(t => <GlossaryTermCard key={t.id} term={t} />)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── WEEKLY PAGE ─────────────────────────────────────────────────────────────
+
+function WeeklyIssuePage({ issue, onNav }) {
+  useEffect(() => { window.scrollTo(0,0); }, [issue]);
+  return (
+    <div className="page active">
+      <div className="tool-page" style={{maxWidth:'860px'}}>
+        <div className="tool-breadcrumb">
+          <a href="#" onClick={e=>{e.preventDefault();onNav('weekly');}}>← שבועון</a>
+          <span>/</span><span>גיליון #{issue.issue}</span>
+        </div>
+        <div style={{fontSize:'12px',fontWeight:700,color:'var(--accent)',letterSpacing:'0.05em',marginBottom:'10px'}}>
+          גיליון #{issue.issue} · {issue.date}
+        </div>
+        <h1 className="tool-title" style={{marginBottom:'12px'}}>{issue.title}</h1>
+        <p style={{fontSize:'16px',color:'var(--ink-2)',lineHeight:1.7,marginBottom:'32px'}}>{issue.summary}</p>
+
+        <div className="weekly-item-list">
+          {issue.items.map((item, i) => (
+            <div className="weekly-item" key={i}>
+              <div className={`weekly-item-type${item.hot?' hot':''}`}>{item.type}</div>
+              <div>
+                <div className="weekly-item-title">{item.title}</div>
+                <div className="weekly-item-desc">{item.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{marginTop:'32px',display:'flex',gap:'8px',flexWrap:'wrap'}}>
+          {issue.tags.map(t => <span className="prompt-tag" key={t}>{t}</span>)}
+        </div>
+
+        <div style={{marginTop:'40px',paddingTop:'24px',borderTop:'1px solid var(--border)',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+          <button
+            className="newsletter-btn"
+            style={{padding:'10px 20px'}}
+            onClick={() => onNav('weekly')}
+          >← כל הגיליונות</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function WeeklyPage({ onNav, onIssue }) {
+  return (
+    <div className="page active">
+      <div className="tool-page" style={{maxWidth:'860px'}}>
+        <div className="tool-breadcrumb">
+          <a href="#" onClick={e=>{e.preventDefault();onNav('home');}}>← ראשי</a>
+          <span>/</span><span>שבועון AI</span>
+        </div>
+        <h1 className="tool-title">מצב ה-AI השבוע</h1>
+        <p className="tool-subtitle">סיכום שבועי של כל מה שקרה בעולם ה-AI — כתבות, כלים, מחקרים ומגמות</p>
+
+        <div className="weekly-issue-list">
+          {WEEKLY_DATA.map(issue => (
+            <div
+              className="weekly-issue-card"
+              key={issue.id}
+              onClick={() => onIssue(issue)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={e => e.key==='Enter' && onIssue(issue)}
+              aria-label={`פתח גיליון: ${issue.title}`}
+            >
+              <div className="weekly-issue-meta">גיליון #{issue.issue} · {issue.date}</div>
+              <div className="weekly-issue-title">{issue.title}</div>
+              <div className="weekly-issue-summary">{issue.summary}</div>
+              <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                <div className="weekly-issue-tags">
+                  {issue.tags.map(t => <span className="prompt-tag" key={t}>{t}</span>)}
+                </div>
+                <span style={{fontSize:'13px',fontWeight:700,color:'var(--accent)'}}>קרא ←</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── SAVED HOOK ──────────────────────────────────────────────────────────────
 
 function useSaved() {
@@ -1834,7 +2236,7 @@ function NavBar({ dark, toggleDark, onNav, page, searchQuery, setSearchQuery, sa
         </a>
         <div className="nav-divider"></div>
         <ul className="nav-links">
-          {[['home','ראשי'],['news','חדשות'],['guides','מדריכים'],['tools','כלים'],['about','אודות']].map(([id,label]) => (
+          {[['home','ראשי'],['news','חדשות'],['guides','מדריכים'],['tools','כלים'],['glossary','מילון'],['weekly','שבועון'],['about','אודות']].map(([id,label]) => (
             <li key={id}>
               <a href="#" className={page === id ? 'active' : ''} onClick={e => { e.preventDefault(); onNav(id); }}>
                 {label}
@@ -2264,17 +2666,55 @@ function ToolsPage({ onNav }) {
   );
 }
 
-function AboutPage() {
+function AboutPage({ onNav }) {
+  const [contactSent, setContactSent] = useState(false);
+  const [name,    setName]    = useState('');
+  const [email,   setEmail]   = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleContact = (e) => {
+    e.preventDefault();
+    setContactSent(true);
+  };
+
+  const expertise = [
+    { icon: '🤖', name: 'מודלי שפה גדולים', desc: 'GPT, Claude, Gemini — ארכיטקטורה, יכולות ומגבלות' },
+    { icon: '🔐', name: 'בטיחות AI', desc: 'Alignment, Constitutional AI ומגמות רגולטוריות' },
+    { icon: '⚡', name: 'סוכני AI', desc: 'בניית agents, tool use, ותכנון מערכות אוטונומיות' },
+    { icon: '🇮🇱', name: 'AI בישראל', desc: 'אקוסיסטם הסטארטאפים, השקעות ומדיניות ממשלתית' },
+    { icon: '💻', name: 'Vibe Coding', desc: 'פיתוח בסיוע AI, כלים ומגמות בתעשיית הפיתוח' },
+    { icon: '📊', name: 'ניתוח שוק', desc: 'תחרות בין חברות, השקעות ומגמות עסקיות' },
+  ];
+
+  const publications = [
+    { year: '2026', title: 'מדריך שלם לבניית AI Agent עם Claude', where: 'בלוג ה-AI של ארז' },
+    { year: '2026', title: 'ניתוח: מה מסתתר מאחורי ה-Constitutional AI של Anthropic', where: 'בלוג ה-AI של ארז' },
+    { year: '2025', title: 'ראיון: מדוע ישראל מובילה בסייבר AI', where: 'Geektime' },
+    { year: '2025', title: 'Prompt Engineering: מדריך מתקדם לטכניקות 2025', where: 'בלוג ה-AI של ארז' },
+    { year: '2025', title: 'השוואה: Claude vs GPT-4 — מה עובד טוב יותר בעברית?', where: 'בלוג ה-AI של ארז' },
+    { year: '2024', title: 'RAG בעברית: כל מה שצריך לדעת', where: 'Dev.to (עברית)' },
+  ];
+
   return (
     <div className="page active">
+
+      {/* Hero */}
       <div className="about-hero">
         <div>
           <div className="about-eyebrow">אודות הבלוג</div>
-          <h1 className="about-title">בינה מלאכותית — בעברית, לעומק</h1>
+          <h1 className="about-title">בינה מלאכותית —<br/>בעברית, לעומק</h1>
           <div className="about-body">
-            <p>בלוג ה-AI של ארז הוא מגזין עצמאי שמסקר את עולם הבינה המלאכותית בעברית. אנחנו מאמינים שתוכן איכותי, מעמיק ונגיש בשפת האם חשוב יותר מאי פעם.</p>
-            <p>הבלוג מתמקד בחדשות שמשנות את השוק, מדריכים מעשיים לשימוש בכלי AI, וניתוחים מעמיקים של המגמות הגדולות בתעשייה.</p>
-            <p>כותב הבלוג, ארז פינקל, הוא חוקר ופרשן טכנולוגי עם ניסיון של שנים בתחום.</p>
+            <p>בלוג ה-AI של ארז הוא מגזין עצמאי שמסקר את עולם הבינה המלאכותית בעברית. אני מאמין שתוכן איכותי, מעמיק ונגיש בשפת האם חשוב יותר מאי פעם — בעידן שבו AI משנה כל תחום.</p>
+            <p>הבלוג מתמקד בחדשות שמשנות את השוק, מדריכים מעשיים לשימוש בכלי AI, ניתוחים של מגמות גדולות, וכלים אינטראקטיביים שבניתי בחינם לקהילה.</p>
+            <p>אני ארז פינקל — חוקר, פרשן טכנולוגי וחובב AI סדרתי. עוקב אחרי התחום מאז ימי GPT-3, ומנסה להנגיש את המהפכה הזו לדוברי עברית.</p>
+          </div>
+          <div style={{display:'flex',gap:'12px',marginTop:'24px',flexWrap:'wrap'}}>
+            <button className="newsletter-btn" style={{padding:'10px 20px'}} onClick={() => onNav('glossary')}>
+              מילון מונחים ←
+            </button>
+            <button className="newsletter-btn" style={{padding:'10px 20px',background:'transparent',border:'2px solid var(--accent)',color:'var(--accent)'}} onClick={() => onNav('weekly')}>
+              שבועון AI ←
+            </button>
           </div>
         </div>
         <div className="about-img-box">
@@ -2283,20 +2723,65 @@ function AboutPage() {
           </div>
         </div>
       </div>
-      <div className="stats-row">
-        <div className="stat-cell">
-          <div className="stat-num">120+</div>
-          <div className="stat-label">כתבות פורסמו</div>
-        </div>
-        <div className="stat-cell">
-          <div className="stat-num">15K</div>
-          <div className="stat-label">קוראים חודשיים</div>
-        </div>
-        <div className="stat-cell">
-          <div className="stat-num">3K+</div>
-          <div className="stat-label">מנויי ניוזלטר</div>
+
+      {/* Stats */}
+      <div className="stats-row" style={{marginBottom:0}}>
+        <div className="stat-cell"><div className="stat-num">120+</div><div className="stat-label">כתבות פורסמו</div></div>
+        <div className="stat-cell"><div className="stat-num">15K</div><div className="stat-label">קוראים חודשיים</div></div>
+        <div className="stat-cell"><div className="stat-num">3K+</div><div className="stat-label">מנויי ניוזלטר</div></div>
+      </div>
+
+      {/* Expertise */}
+      <div className="about-section" style={{paddingTop:'56px'}}>
+        <div className="about-section-title">תחומי התמחות</div>
+        <div className="expertise-grid">
+          {expertise.map(e => (
+            <div className="expertise-card" key={e.name}>
+              <div className="expertise-icon">{e.icon}</div>
+              <div className="expertise-name">{e.name}</div>
+              <div className="expertise-desc">{e.desc}</div>
+            </div>
+          ))}
         </div>
       </div>
+
+      {/* Publications */}
+      <div className="about-section">
+        <div className="about-section-title">פרסומים נבחרים</div>
+        <ul className="pub-list">
+          {publications.map((p, i) => (
+            <li className="pub-item" key={i}>
+              <div className="pub-year">{p.year}</div>
+              <div>
+                <div className="pub-title">{p.title}</div>
+                <div className="pub-where">{p.where}</div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Contact */}
+      <div className="about-section">
+        <div className="about-section-title">צרו קשר</div>
+        <p style={{fontSize:'15px',color:'var(--ink-2)',marginBottom:'24px',lineHeight:1.7}}>
+          לשיתופי פעולה, ראיונות, הרצאות, או סתם שאלות על AI — אשמח לשמוע.
+        </p>
+        {contactSent ? (
+          <div style={{background:'var(--accent-light)',border:'1px solid var(--accent)',borderRadius:'6px',padding:'20px 24px',maxWidth:'520px'}}>
+            <div style={{fontWeight:700,color:'var(--accent)',marginBottom:'6px'}}>✓ ההודעה נשלחה!</div>
+            <div style={{fontSize:'14px',color:'var(--ink-2)'}}>אחזור אליכם בהקדם.</div>
+          </div>
+        ) : (
+          <form className="contact-form" onSubmit={handleContact}>
+            <input className="contact-input" type="text" placeholder="שם מלא" value={name} onChange={e=>setName(e.target.value)} required aria-label="שם" />
+            <input className="contact-input" type="email" placeholder="כתובת מייל" value={email} onChange={e=>setEmail(e.target.value)} required aria-label="מייל" />
+            <textarea className="contact-input" placeholder="ההודעה שלכם..." value={message} onChange={e=>setMessage(e.target.value)} required aria-label="הודעה" />
+            <button type="submit" className="newsletter-btn" style={{alignSelf:'flex-start',padding:'11px 28px'}}>שלח הודעה</button>
+          </form>
+        )}
+      </div>
+
     </div>
   );
 }
@@ -2313,7 +2798,7 @@ function SiteFooter({ onNav }) {
           <div>
             <div className="footer-col-title">ניווט</div>
             <ul className="footer-links">
-              {[['home','ראשי'],['news','חדשות'],['guides','מדריכים'],['tools','כלים'],['saved','שמורים'],['about','אודות']].map(([id,lbl]) => (
+              {[['home','ראשי'],['news','חדשות'],['guides','מדריכים'],['tools','כלים'],['glossary','מילון'],['weekly','שבועון'],['saved','שמורים'],['about','אודות']].map(([id,lbl]) => (
                 <li key={id}><a href="#" onClick={e=>{e.preventDefault();onNav(id);}}>{lbl}</a></li>
               ))}
             </ul>
@@ -2375,6 +2860,7 @@ function App() {
   const setTweak = tweaksResult?.setTweak ?? (() => {});
   const [page, setPage] = useState('home');
   const [article, setArticle] = useState(null);
+  const [weeklyIssue, setWeeklyIssue] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const { saved, toggle: toggleSaved, isSaved } = useSaved();
 
@@ -2398,7 +2884,14 @@ function App() {
   const handleNav = (id) => {
     setPage(id);
     setArticle(null);
+    setWeeklyIssue(null);
     setSearchQuery('');
+    window.scrollTo(0,0);
+  };
+
+  const handleWeeklyIssue = (issue) => {
+    setWeeklyIssue(issue);
+    setPage('weekly-issue');
     window.scrollTo(0,0);
   };
 
@@ -2440,7 +2933,10 @@ function App() {
       {page === 'tool-cost'    && <CostCalculatorPage onNav={handleNav} />}
       {page === 'tool-prompts' && <PromptLibraryPage  onNav={handleNav} />}
       {page === 'tool-models'  && <ModelComparisonPage onNav={handleNav} />}
-      {page === 'about'        && <AboutPage />}
+      {page === 'glossary'     && <GlossaryPage onNav={handleNav} />}
+      {page === 'weekly'       && <WeeklyPage onNav={handleNav} onIssue={handleWeeklyIssue} />}
+      {page === 'weekly-issue' && weeklyIssue && <WeeklyIssuePage issue={weeklyIssue} onNav={handleNav} />}
+      {page === 'about'        && <AboutPage onNav={handleNav} />}
       {page === 'saved'        && <SavedPage saved={saved} onArticle={handleArticle} onNav={handleNav} />}
       <SiteFooter onNav={handleNav} />
       <BackToTop />
