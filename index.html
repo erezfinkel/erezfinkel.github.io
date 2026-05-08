@@ -4,6 +4,45 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>בלוג ה-AI של ארז</title>
+<meta name="description" content="מדריכים, חדשות וכלים מעולם הבינה המלאכותית — בעברית">
+
+<!-- Open Graph -->
+<meta property="og:type"        content="website">
+<meta property="og:title"       content="בלוג ה-AI של ארז">
+<meta property="og:description" content="מדריכים, חדשות וכלים מעולם הבינה המלאכותית">
+<meta property="og:image"       content="https://erezfinkel.github.io/assets/images/og-default.png">
+<meta property="og:url"         content="https://erezfinkel.github.io">
+<meta property="og:site_name"   content="בלוג ה-AI של ארז">
+<meta property="og:locale"      content="he_IL">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="בלוג ה-AI של ארז">
+<meta name="twitter:description" content="מדריכים, חדשות וכלים מעולם הבינה המלאכותית">
+<meta name="twitter:image"       content="https://erezfinkel.github.io/assets/images/og-default.png">
+<meta name="twitter:site"        content="@erezfinkel">
+
+<link rel="canonical" href="https://erezfinkel.github.io">
+<link rel="alternate" type="application/rss+xml" title="בלוג ה-AI של ארז" href="https://erezfinkel.github.io/feed.xml">
+
+<!-- JSON-LD: WebSite -->
+<script type="application/ld+json" id="site-jsonld">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://erezfinkel.github.io/#website",
+  "name": "בלוג ה-AI של ארז",
+  "description": "מדריכים, חדשות וכלים מעולם הבינה המלאכותית",
+  "url": "https://erezfinkel.github.io",
+  "inLanguage": "he",
+  "publisher": {
+    "@type": "Person",
+    "@id": "https://erezfinkel.github.io/#author",
+    "name": "ארז פינקל",
+    "url": "https://erezfinkel.github.io"
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -947,6 +986,65 @@ const SearchIcon = () => (
   </svg>
 );
 
+// ─── TOC HELPERS ────────────────────────────────────────────────────────────
+
+function processBodyWithIds(html) {
+  let idx = 0;
+  const headings = [];
+  const processed = html.replace(/<(h[23])([^>]*)>([\s\S]*?)<\/h[23]>/gi, (_, tag, attrs, inner) => {
+    const id = `sec-${idx++}`;
+    const text = inner.replace(/<[^>]+>/g, '').trim();
+    headings.push({ id, text, level: parseInt(tag[1]) });
+    return `<${tag}${attrs} id="${id}">${inner}</${tag}>`;
+  });
+  return { html: processed, headings };
+}
+
+function TOCWidget({ headings }) {
+  const [activeId, setActiveId] = React.useState(null);
+
+  React.useEffect(() => {
+    if (!headings.length) return;
+    const io = new IntersectionObserver(
+      entries => {
+        entries.forEach(e => { if (e.isIntersecting) setActiveId(e.target.id); });
+      },
+      { rootMargin: '-15% 0px -70% 0px' }
+    );
+    headings.forEach(h => { const el = document.getElementById(h.id); if (el) io.observe(el); });
+    return () => io.disconnect();
+  }, [headings]);
+
+  if (headings.length < 3) return null;
+
+  return (
+    <div className="sidebar-widget">
+      <div className="sidebar-widget-title" style={{fontSize:'13px'}}>תוכן עניינים</div>
+      <nav aria-label="תוכן עניינים">
+        {headings.map(h => (
+          <a
+            key={h.id}
+            href={`#${h.id}`}
+            onClick={e => { e.preventDefault(); document.getElementById(h.id)?.scrollIntoView({ behavior: 'smooth' }); }}
+            style={{
+              display: 'block',
+              fontSize: h.level === 3 ? '12px' : '13px',
+              padding: h.level === 3 ? '3px 20px 3px 0' : '4px 10px 4px 0',
+              borderRight: h.level === 2 ? '2px solid var(--accent)' : '2px solid transparent',
+              color: activeId === h.id ? 'var(--accent)' : 'var(--ink-2)',
+              fontWeight: activeId === h.id ? '700' : '400',
+              transition: 'color 0.15s',
+              textDecoration: 'none',
+            }}
+          >
+            {h.text}
+          </a>
+        ))}
+      </nav>
+    </div>
+  );
+}
+
 // ─── COMPONENTS ─────────────────────────────────────────────────────────────
 
 function NavBar({ dark, toggleDark, onNav, page, searchQuery, setSearchQuery }) {
@@ -1172,7 +1270,49 @@ function ArticleReadingBar() {
 
 function ArticlePage({ article, onBack }) {
   useEffect(() => { window.scrollTo(0, 0); }, [article]);
-  const body = `
+
+  // Inject article JSON-LD into <head> and clean up on unmount / article change
+  useEffect(() => {
+    const tag = document.createElement('script');
+    tag.type = 'application/ld+json';
+    tag.id = 'article-jsonld';
+    tag.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "headline": article.title,
+          "description": article.excerpt,
+          "image": article.img,
+          "url": `https://erezfinkel.github.io/#article-${article.id}`,
+          "inLanguage": "he",
+          "author": {
+            "@type": "Person",
+            "@id": "https://erezfinkel.github.io/#author",
+            "name": "ארז פינקל"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "בלוג ה-AI של ארז",
+            "url": "https://erezfinkel.github.io"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "ראשי", "item": "https://erezfinkel.github.io" },
+            { "@type": "ListItem", "position": 2, "name": article.category, "item": `https://erezfinkel.github.io/#${article.catEn.toLowerCase()}` },
+            { "@type": "ListItem", "position": 3, "name": article.title, "item": `https://erezfinkel.github.io/#article-${article.id}` }
+          ]
+        }
+      ]
+    });
+    document.getElementById('article-jsonld')?.remove();
+    document.head.appendChild(tag);
+    return () => document.getElementById('article-jsonld')?.remove();
+  }, [article]);
+
+  const rawBody = `
     <p>${article.excerpt}</p>
     <p>מאז שהבינה המלאכותית נכנסה לחיינו בצורה כה מאסיבית, הדיון על השפעותיה הפך לאחד הדיונים המרכזיים בזירה הטכנולוגית הגלובלית. אנחנו עדים לשינוי עמוק לא רק בכלים שבהם אנחנו משתמשים, אלא בדרך שבה אנחנו חושבים, עובדים ומקבלים החלטות.</p>
     <h2>הרקע לאירוע</h2>
@@ -1181,7 +1321,11 @@ function ArticlePage({ article, onBack }) {
     <p>המחקרים האחרונים מראים כי הטמעה נכונה של AI יכולה להגדיל פריון ב-40% ויותר, אך המפתח נמצא בגישה האסטרטגית ובהכשרת האנשים.</p>
     <h2>מה זה אומר בפרקטיקה</h2>
     <p>ארגונים שמצליחים להטמיע AI בצורה אפקטיבית משתפים מספר מאפיינים משותפים: מנהיגות שמאמינה בטכנולוגיה, תרבות של ניסוי ולמידה, ותשומת לב מיוחדת לאיכות הנתונים.</p>
+    <h2>מה הלאה?</h2>
+    <p>המגמות מראות שהשנים הקרובות יהיו מכוננות. הכלים שמגיעים כיום לשוק יעצבו את אופי העבודה, היצירה וקבלת ההחלטות לדור הבא.</p>
   `;
+
+  const { html: body, headings } = processBodyWithIds(rawBody);
 
   return (
     <div className="page active">
@@ -1210,11 +1354,12 @@ function ArticlePage({ article, onBack }) {
       <div className="article-body">
         <div className="article-text" dangerouslySetInnerHTML={{ __html: body }} />
         <aside className="sidebar" style={{position:'sticky',top:'calc(var(--nav-h) + 20px)'}}>
+          <TOCWidget headings={headings} />
           <div className="sidebar-widget">
             <div className="sidebar-widget-title">ניוזלטר</div>
             <div className="newsletter-form">
               <p className="newsletter-desc">קבלו עדכונים שבועיים על AI ישירות למייל.</p>
-              <input className="newsletter-input" type="email" placeholder="המייל שלכם" />
+              <input className="newsletter-input" type="email" placeholder="המייל שלכם" aria-label="כתובת מייל להרשמה לניוזלטר" />
               <button className="newsletter-btn">הרשמה</button>
             </div>
           </div>

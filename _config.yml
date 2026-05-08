@@ -1,3 +1,23 @@
 title: "בלוג ה-AI של ארז"
 description: "מדריכים, חדשות וכלים מעולם הבינה המלאכותית"
 theme: jekyll-theme-hacker
+
+url: "https://erezfinkel.github.io"
+baseurl: ""
+lang: he
+
+author:
+  name: "ארז פינקל"
+  url: "https://erezfinkel.github.io"
+
+twitter:
+  username: erezfinkel
+
+og_image: "/assets/images/og-default.png"
+
+feed:
+  path: feed.xml
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
